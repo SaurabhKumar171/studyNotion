@@ -1,0 +1,64 @@
+{
+  "name": "studyNotion",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ramonak/react-progress-bar": "^5.2.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
+    "concurrently": "^8.0.1",
+    "hamburger-react": "^2.5.0",
+    "react": "^18.2.0",
+    "react-burger-menu": "^3.0.9",
+    "react-datepicker": "^6.1.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.44.2",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.12.0",
+    "react-otp-input": "^3.0.2",
+    "react-rating-stars-component": "^2.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "5.0.1",
+    "react-type-animation": "^3.0.1",
+    "redux-toolkit": "^1.1.2",
+    "swiper": "^9.3.2",
+    "web-vitals": "^2.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git"
+  },
+  "author": "Pranay Gupta",
+  "bugs": {
+    "url": "https://github.com/thepranaygupta/react-tailwind-css-starter-pack/issues"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}
