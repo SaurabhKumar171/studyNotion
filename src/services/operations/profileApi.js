@@ -85,3 +85,4 @@ export async function getUserEnrolledCourses(token, dispatch){
           progressPercentage: 25,
         }];
 }
+

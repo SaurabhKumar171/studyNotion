@@ -30,7 +30,7 @@ const MyProfile = () => {
     
     
   return (
-    <div className='text-white pl-7 pt-4 flex flex-col gap-4 pl-7'>
+    <div className='text-white pl-7 pt-4 flex flex-col gap-4'>
 
         <div className='rounded-lg'>
             <div>
