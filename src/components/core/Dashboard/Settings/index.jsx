@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import ConfirmationModal from '../../../common/ConfirmationModal'
@@ -6,13 +6,13 @@ import ChangeProfilePicture from './ChangeProfilePicture'
 import EditProfile from './EditProfile'
 import UpdatePassword from './UpdatePassword';
 import DeleteAccount from './DeleteAccount';
-import Overlay from '../../../common/Overlay'
+import Overlay from '../../../common/Overlay';
 
 const Settings = () => {
 
     const {user} = useSelector((state) => state.profile)
     const location = useLocation();
-    console.log("user",user);
+
 
     const [confirmationModal, setConfirmationModal] = useState(null);
 
@@ -60,13 +60,13 @@ const Settings = () => {
                <DeleteAccount setConfirmationModal={setConfirmationModal}/>
           </div>
 
-          {
-            confirmationModal && 
-                // <div>
-                    <ConfirmationModal modalData={confirmationModal}/>
-                //     <Overlay/>
-                // </div>
-          }
+           { //Confirmation modal
+                confirmationModal && 
+                <>
+                    <Overlay/>                    
+                    <ConfirmationModal modalData={confirmationModal} closeModal={()=>setConfirmationModal(null)}/>
+                </>
+            }
       </div>
       )
 }
