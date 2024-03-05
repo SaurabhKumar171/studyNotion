@@ -19,22 +19,25 @@ export default function UpdatePassword() {
     formState: { errors },
   } = useForm()
 
-  const submitPasswordForm = async (data) => {
+  const submitPasswordForm = async (data, e) => {
     console.log("password Data - ", data)
     try {
-      await changePassword(token, data)
+      await changePassword(token, data);
+      e.target.reset();
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
     }
+    
   }
+
 
   return (
     <>
-      <form onSubmit={handleSubmit(submitPasswordForm)}>
+      <form onSubmit={(e) => handleSubmit(submitPasswordForm(e))}>
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
           <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
           <div className="flex flex-col items-baseline gap-5 lg:flex-row">
-            <div className="relative flex flex-col gap-2 lg:w-[48%]">
+            <div className="relative flex flex-col gap-2 w-full lg:w-[48%]">
               <label htmlFor="oldPassword" className="label-style">
                 Current Password
               </label>
@@ -62,7 +65,7 @@ export default function UpdatePassword() {
                 </span>
               )}
             </div>
-            <div className="relative flex flex-col gap-2 lg:w-[48%]">
+            <div className="relative flex flex-col gap-2 w-full lg:w-[48%]">
               <label htmlFor="newPassword" className="lable-style">
                 New Password
               </label>
@@ -97,11 +100,11 @@ export default function UpdatePassword() {
             onClick={() => {
               navigate("/dashboard/my-profile")
             }}
-            className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
+            className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-medium text-richblack-50"
           >
             Cancel
           </button>
-          <IconBtn type="submit" text="Update"/>
+          <IconBtn type="submit" text="Update" customClasses={"font-medium"}/>
         </div>
       </form>
     </>

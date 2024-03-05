@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { sidebarLinks } from '../../../data/dashboard-links'
 import {logout} from "../../../services/operations/authAPI"
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import {VscSignOut} from "react-icons/vsc"
 import ConfirmationModal from '../../common/ConfirmationModal'
 import '../../../Styles/Dashboard/SideBar.css'
+import Overlay from '../../common/Overlay'
+import useOnClickOutside from '../../../hooks/useOnClickOutside'
 
 const Sidebar = ({sidebar, closeSidebar}) => {
 
@@ -15,11 +17,14 @@ const Sidebar = ({sidebar, closeSidebar}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [confirmationModal, setConfirmationModal] = useState(null);
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1024); 
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1024); 
 
+    const ref = useRef(null);
+    useOnClickOutside(ref, isSmallScreen ? closeSidebar: ()=>{return});
+    
     useEffect(() => {
         const handleResize = () => {
-            setIsSmallScreen(window.innerWidth < 1024);
+            setIsSmallScreen(window.innerWidth <= 1024);
         };
 
         window.addEventListener('resize', handleResize);
@@ -40,13 +45,22 @@ const Sidebar = ({sidebar, closeSidebar}) => {
     }
 
   return (
-    <div className={`text-white max-[1024px]:h-full max-[1024px]:absolute transition-all duration-[850ms] max-[1024px]:z-[1] ${sidebar ? 'max-[1024px]:left-0' : 'max-[1024px]:left-[-100%]' }`}>
+    <div 
+        className={`
+                    text-white max-[1024px]:h-full max-[1024px]:absolute transition-all duration-[850ms] 
+                    ${sidebar ? 'max-[1024px]:left-0 max-[1024px]:z-[51]' : 'max-[1024px]:left-[-100%]' }`
+                  } 
+        ref={ref}>
         
         <div className='flex flex-col min-w-[222px] border-r-[1px] border-r-richblack-700
             bg-richblack-800 h-full py-10 relative'>
 
-            <div className={`flex lg:hidden flex-col items-start justify-between cursor-pointer transition-all absolute top-4 right-3 ${sidebar ? 'duration-[900ms] opacity-100':'opacity-0 duration-200'}`} 
-                     onClick={close}>
+            <div className={` 
+                            ${isSmallScreen? "flex": "hidden"} 
+                            flex-col items-start justify-between cursor-pointer transition-all absolute top-4 right-3 ${sidebar ? 'duration-[900ms] opacity-100':'opacity-0 duration-200'}`
+                            } 
+                  onClick=  {close}
+                >
                     <div className={`w-[1.6em] h-[0.2em] bg-richblack-75 ${sidebar && 'rotate-45'}`}></div>
                     <div className={`w-[1.6em] h-[0.2em] bg-richblack-75 ${sidebar && 'close-sidebar'}`}></div>
             </div>
@@ -84,7 +98,13 @@ const Sidebar = ({sidebar, closeSidebar}) => {
             </div>
         </div>
 
-      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+        { //Confirmation modal
+                confirmationModal && 
+                <>
+                    <Overlay/>                
+                    <ConfirmationModal modalData={confirmationModal} closeModal={()=>setConfirmationModal(null)}/>
+                </>
+        }
     </div>
   )
 }

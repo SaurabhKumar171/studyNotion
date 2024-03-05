@@ -44,8 +44,8 @@ const MyProfile = () => {
 
         <div className=' flex flex-col gap-4 w-[80%] mt-5 mx-auto'>
             {/* section 1 */}
-            <div className='bg-richblack-800 flex justify-between items-center p-4 rounded-lg'>
-                <div className='flex gap-4 justify-center items-center'>
+            <div className='bg-richblack-800 flex justify-between items-baseline lg:items-center p-4 rounded-lg'>
+                <div className='flex lg:flex-row flex-col gap-4 lg:justify-center lg:items-center'>
                     <img 
                     src={user?.image}
                     alt={`profile-${user?.firstName}`}
@@ -59,7 +59,8 @@ const MyProfile = () => {
                     text="Edit"
                     onclick={() => {
                         navigate("/dashboard/settings")
-                    }}>
+                    }}
+                    customClasses={"self-start"}>
                         <MdEditDocument />
                 </IconBtn>
             </div>

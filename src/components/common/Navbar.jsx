@@ -57,7 +57,7 @@ const Navbar = () => {
       <div className='flex w-11/12 max-w-maxContent items-center justify-between'>
         {/* Image */}
       <Link to="/">
-        <img src={logo} width={160} height={42} loading='lazy'/>
+        <img src={logo} width={160} height={42} loading='lazy' alt="logo"/>
       </Link>
 
       {/* Nav Links */}
@@ -68,7 +68,7 @@ const Navbar = () => {
                  <li key={index}>
                     {
                         link.title === "Catalog" ? (
-                            <div className='relative flex items-center gap-2 group'>
+                            <div className='relative flex items-center gap-2 group cursor-pointer'>
                                 <p>{link.title}</p>
                                 <IoIosArrowDropdownCircle/>
 
@@ -77,7 +77,7 @@ const Navbar = () => {
                                  top-[50%]
                                 flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900
                                 opacity-0 transition-all duration-200 group-hover:visible
-                                group-hover:opacity-100 lg:w-[300px]'>
+                                group-hover:opacity-100 lg:w-[300px] z-1'>
 
                                 <div className='absolute left-[50%] top-0
                                 translate-x-[80%]

@@ -2,24 +2,39 @@ import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import {Outlet} from "react-router-dom"
 import Sidebar from '../components/core/Dashboard/Sidebar'
-import useOnClickOutside from '../hooks/useOnClickOutside'
+import Overlay from '../components/common/Overlay'
+import HamburgerSidebar from '../components/common/HamburgerSidebar'
 
 const Dashboard = () => {
 
     const {loading: authLoading} = useSelector( (state) => state.auth );
     const {loading: profileLoading} = useSelector( (state) => state.profile );
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1024); 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth <= 1024);
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1024); 
+    const [showOverlay, setShowOverlay] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsSmallScreen(window.innerWidth < 1024);
+            setIsSmallScreen(window.innerWidth <= 1024);
+            setIsSidebarOpen(window.innerWidth >= 1024);
         };
 
         window.addEventListener('resize', handleResize);
 
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        if (isSidebarOpen && isSmallScreen) {
+            const timer = setTimeout(() => {
+                setShowOverlay(true);
+            }, 700);
+
+            return () => clearTimeout(timer);
+        } else {
+            setShowOverlay(false);
+        }
+    }, [isSidebarOpen, isSmallScreen]);
 
     const handleSidebarToggle = () => {
         setIsSidebarOpen(!isSidebarOpen)
@@ -36,19 +51,23 @@ const Dashboard = () => {
 
   return (
     <div className='relative flex bg-richblack-900'>
-        <Sidebar sidebar={isSidebarOpen} closeSidebar={()=> setIsSidebarOpen(false)}/>       
-        <div className='h-[calc(100vh-3.5rem)] overflow-auto w-full'>
+ 
+        <Sidebar sidebar={isSidebarOpen} closeSidebar={()=> setIsSidebarOpen(false)}/>    
 
-            <div className={`flex lg:hidden flex-col items-start justify-between cursor-pointer py-2 transition-all ${!isSidebarOpen ? 'duration-[900ms] opacity-100 gap-y-1':'opacity-0 duration-200'}`} 
-                     onClick={() =>handleSidebarToggle(!isSidebarOpen)}>
-                    <div className={`w-[1.6em] ml-8 h-[0.2em] bg-richblack-75 ${!isSidebarOpen ? 'rounded-full':'rounded-normal'}`}></div>
-                    <div className={`w-[1.6em] ml-8 h-[0.2em] bg-richblack-75 ${!isSidebarOpen ? 'rounded-full':'hidden'}`}></div>
-                    <div className={`w-[1.6em] ml-8 h-[0.2em] bg-richblack-75 ${!isSidebarOpen ? 'rounded-full':'rounded-normal'}`}></div>
-            </div>
+        <div className='h-[calc(100vh-3.5rem)] overflow-auto w-full mb-4'>
+            <HamburgerSidebar 
+                            isSmallScreen={isSmallScreen} 
+                            isSidebarOpen={isSidebarOpen} 
+                            handleSidebarToggle={handleSidebarToggle}
+                />
+                
             <div className='pr-5'>
                 <Outlet />
             </div>
         </div>
+
+        {showOverlay && <Overlay />}
+
     </div>
   )
 }
