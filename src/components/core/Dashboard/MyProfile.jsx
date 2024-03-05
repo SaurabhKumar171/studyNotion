@@ -44,25 +44,26 @@ const MyProfile = () => {
 
         <div className=' flex flex-col gap-4 w-[80%] mt-5 mx-auto'>
             {/* section 1 */}
-            <div className='bg-richblack-800 flex justify-between items-baseline lg:items-center p-4 rounded-lg'>
-                <div className='flex lg:flex-row flex-col gap-4 lg:justify-center lg:items-center'>
+            <div className='bg-richblack-800 flex flex-col p-4 rounded-lg'>
+                <div className='flex justify-between items-center'>
                     <img 
                     src={user?.image}
                     alt={`profile-${user?.firstName}`}
                     className='aspect-square w-[78px] rounded-full object-cover' />
-                    <div>
-                        <p className="text-richblack-5 text-xl font-medium"> {user?.firstName + " " + user?.lastName} </p>
-                        <p className="text-richblack-300 text-sm"> {user?.email}</p>
-                    </div>
+
+                    <IconBtn
+                        text="Edit"
+                        onclick={() => {
+                            navigate("/dashboard/settings")
+                        }}
+                        customClasses={"self-start max-[370px]:-ml-10"}>
+                            <MdEditDocument />
+                    </IconBtn>
                 </div>
-                <IconBtn
-                    text="Edit"
-                    onclick={() => {
-                        navigate("/dashboard/settings")
-                    }}
-                    customClasses={"self-start"}>
-                        <MdEditDocument />
-                </IconBtn>
+                <div>
+                    <p className="text-richblack-5 text-xl font-medium"> {user?.firstName + " " + user?.lastName} </p>
+                    <p className="text-richblack-300 text-sm"> {user?.email}</p>
+                </div>
             </div>
 
             {/* section 2 */}
@@ -94,7 +95,7 @@ const MyProfile = () => {
                     <MdEditDocument />    
                     </IconBtn>
                 </div>
-                <div className='flex flex-wrap w-full mt-4 gap-6'>
+                <div className='flex flex-wrap flex-col sm:flex-row w-full mt-4 gap-6'>
                     <div className="flex flex-col w-[45%]">
                         <p className="text-richblack-300 text-sm">First Name</p>
                         <p className="text-richblack-5 text-sm">{user?.firstName}</p>
