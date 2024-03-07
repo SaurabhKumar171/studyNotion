@@ -47,8 +47,8 @@ const Sidebar = ({sidebar, closeSidebar}) => {
   return (
     <div 
         className={`
-                    text-white max-[1024px]:h-full max-[1024px]:absolute transition-all duration-[850ms] 
-                    ${sidebar ? 'max-[1024px]:left-0 max-[1024px]:z-[51]' : 'max-[1024px]:left-[-100%]' }`
+                    text-white max-[1024px]:h-full max-[1024px]:absolute transition-all duration-[850ms] max-[1024px]:z-[51] 
+                    ${sidebar ? 'max-[1024px]:left-0' : 'max-[1024px]:left-[-100%]' }`
                   } 
         ref={ref}>
         
@@ -98,7 +98,7 @@ const Sidebar = ({sidebar, closeSidebar}) => {
             </div>
         </div>
 
-        { //Confirmation modal
+        { // Confirmation modal
                 confirmationModal && 
                 <>
                     <Overlay/>                

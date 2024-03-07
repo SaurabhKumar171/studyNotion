@@ -16,7 +16,7 @@ const DeleteAccount = ({setConfirmationModal}) => {
 
   return (
     <section className=''>
-        <div className='bg-pink-900 flex items-start p-6 rounded-lg gap-x-4'>
+        <div className='bg-pink-900 flex flex-col sm:flex-row items-center sm:items-start p-2 px-4 sm:p-6 rounded-lg gap-x-4'>
             <div 
                 className='rounded-3xl text-2xl bg-pink-700 p-3 text-pink-200 cursor-pointer'
                 onClick={() => setConfirmationModal({
@@ -31,12 +31,12 @@ const DeleteAccount = ({setConfirmationModal}) => {
                 <FiTrash2/>
             </div>
             <div className='flex flex-col font-inter gap-y-2 w-10/12'>
-                <p className='text-lg font-semibold text-pink-5'>Delete Account</p>
+                <p className='text-lg font-semibold text-pink-5 text-center sm:text-left'>Delete Account</p>
                 <div className='flex flex-col text-sm'>
-                <p>Would you like to delete account?</p>
-                <p>This account contains Paid Courses. Deleting your account will remove all the contain associated with it.</p>
+                    <p className='text-center sm:text-left'>Would you like to delete account?</p>
+                    <p className='text-center sm:text-left'>This account contains Paid Courses. Deleting your account will remove all the contain associated with it.</p>
                 </div>
-                <p className='text-pink-300 text-md italic'>I want to delete my account.</p>
+                <p className='text-pink-300 text-md italic text-center sm:text-left'>I want to delete my account.</p>
             </div>
         </div>
     </section>
