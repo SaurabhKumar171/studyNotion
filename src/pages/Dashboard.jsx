@@ -9,14 +9,15 @@ const Dashboard = () => {
 
     const {loading: authLoading} = useSelector( (state) => state.auth );
     const {loading: profileLoading} = useSelector( (state) => state.profile );
-    const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth <= 1024);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1024); 
     const [showOverlay, setShowOverlay] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth <= 1024);
-            setIsSidebarOpen(window.innerWidth >= 1024);
+            // setIsSidebarOpen(window.innerWidth <= 1024);
+            // console.log("isSidebarOpen ",window.innerWidth," --- > ",isSidebarOpen);
         };
 
         window.addEventListener('resize', handleResize);
@@ -52,7 +53,7 @@ const Dashboard = () => {
   return (
     <div className='relative flex bg-richblack-900'>
  
-        <Sidebar sidebar={isSidebarOpen} closeSidebar={()=> setIsSidebarOpen(false)}/>    
+        <Sidebar sidebar={isSidebarOpen} isSmallScreen={isSmallScreen} closeSidebar={()=> setIsSidebarOpen(false)}/>    
 
         <div className='h-[calc(100vh-3.5rem)] overflow-auto w-full mb-4'>
             <HamburgerSidebar 

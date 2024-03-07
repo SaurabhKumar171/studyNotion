@@ -63,8 +63,8 @@ const EnrolledCourses = () => {
         !enrolledCourses.length ? 
         (<p>You have not enrolled in any course yet</p>):
         (
-          <div className='min-w-[700px] overflow-x-auto'>
-            <div className="border border-richblack-700 rounded-md">
+          <div className='overflow-x-auto'>
+            <div className="border border-richblack-700 rounded-md min-w-[600px]">
               <div className="grid grid-cols-4 gap-4 bg-richblack-700 p-4" 
                     style={{gridTemplateColumns: '40% 1fr 1fr 1fr'}}>
                     <p className=''>Course Name</p>

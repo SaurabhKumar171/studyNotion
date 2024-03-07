@@ -34,8 +34,8 @@ export default function UpdatePassword() {
   return (
     <>
       <form onSubmit={(e) => handleSubmit(submitPasswordForm(e))}>
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-          <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
+        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 py-8 px-4 sm:px-12">
+          <h2 className="text-lg font-semibold text-richblack-5 max-[290px]:text-center">Password</h2>
           <div className="flex flex-col items-baseline gap-5 lg:flex-row">
             <div className="relative flex flex-col gap-2 w-full lg:w-[48%]">
               <label htmlFor="oldPassword" className="label-style">
@@ -51,7 +51,7 @@ export default function UpdatePassword() {
               />
               <span
                 onClick={() => setShowOldPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 max-[350px]:top-[2.9rem] top-11 z-[10] cursor-pointer"
               >
                 {showOldPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -66,7 +66,7 @@ export default function UpdatePassword() {
               )}
             </div>
             <div className="relative flex flex-col gap-2 w-full lg:w-[48%]">
-              <label htmlFor="newPassword" className="lable-style">
+              <label htmlFor="newPassword" className="label-style">
                 New Password
               </label>
               <input
@@ -79,7 +79,7 @@ export default function UpdatePassword() {
               />
               <span
                 onClick={() => setShowNewPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 max-[350px]:top-[2.9rem] top-11 z-[10] cursor-pointer"
               >
                 {showNewPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />

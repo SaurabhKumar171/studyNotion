@@ -53,16 +53,16 @@ const ChangeProfilePicture = () => {
     }
 
   return (
-        <div className='bg-richblack-800 flex items-center gap-6 p-4 rounded-lg'>
+        <div className='bg-richblack-800 flex max-[447px]:flex-col items-center gap-6 p-4 rounded-lg'>
             <img 
             src={ previewSource || user?.image}
             alt={`profile-${user?.firstName}`}
             className='aspect-square w-[78px] rounded-full object-cover' 
             />
             <div>
-                <p className="text-richblack-5 text-md font-medium capitalize mb-2"> Change profile picture </p>
+                <p className="text-richblack-5 text-center text-md font-medium capitalize mb-2"> Change profile picture </p>
 
-                <div className="flex gap-2 items-center ">
+                <div className="flex gap-2 items-center max-[300px]:flex-col">
                     {/* Hidden file input element */}
                     <input
                     type="file"
@@ -72,13 +72,14 @@ const ChangeProfilePicture = () => {
                     accept="image/png, image/gif, image/jpeg"
                     />                              
 
-                    <button onClick={onChooseFile} className='bg-richblack-700 py-1 px-3 rounded-md'>
+                    <button onClick={onChooseFile} className='bg-richblack-700 py-1 px-3 rounded-md max-[301px]:w-full'>
                     Select
                     </button>
 
                     <IconBtn 
                         text={loading?"Uploading...":"Upload"}
                         onclick={onHandleFileUpload}
+                        customClasses={"max-[301px]:w-full"}
                     > 
                         <MdOutlineFileUpload />  
                     </IconBtn>  

@@ -45,18 +45,18 @@ const MyProfile = () => {
         <div className=' flex flex-col gap-4 w-[80%] mt-5 mx-auto'>
             {/* section 1 */}
             <div className='bg-richblack-800 flex flex-col p-4 rounded-lg'>
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center max-[280px]:flex-col-reverse'>
                     <img 
                     src={user?.image}
                     alt={`profile-${user?.firstName}`}
-                    className='aspect-square w-[78px] rounded-full object-cover' />
+                    className='aspect-square w-[78px] rounded-full object-cover max-[280px]:self-start' />
 
                     <IconBtn
                         text="Edit"
                         onclick={() => {
                             navigate("/dashboard/settings")
                         }}
-                        customClasses={"self-start max-[370px]:-ml-10"}>
+                        customClasses={"self-start max-[370px]:-ml-10 max-[280px]:self-end max-[280px]:mb-[0.5em]"}>
                             <MdEditDocument />
                     </IconBtn>
                 </div>
@@ -85,14 +85,15 @@ const MyProfile = () => {
 
             {/* section 3 */}
             <div className='bg-richblack-800 flex flex-col justify-around p-4 rounded-lg'>
-                <div className='flex justify-between items-center'>
-                    <p className='text-richblack-5 text-lg font-medium'>Personal Details</p>
+                <div className='flex justify-between items-center max-[280px]:flex-col-reverse'>
+                    <p className='text-richblack-5 text-lg font-medium max-[280px]:self-start'>Personal Details</p>
                     <IconBtn
-                    text="Edit"
-                    onclick={() => {
-                        navigate("/dashboard/settings")
-                    }}>
-                    <MdEditDocument />    
+                        text="Edit"
+                        onclick={() => {
+                            navigate("/dashboard/settings")
+                        }}
+                        customClasses={`max-[280px]:self-end max-[280px]:mb-[0.5em]`}>
+                        <MdEditDocument />    
                     </IconBtn>
                 </div>
                 <div className='flex flex-wrap flex-col sm:flex-row w-full mt-4 gap-6'>
