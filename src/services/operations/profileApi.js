@@ -62,27 +62,6 @@ export async function getUserEnrolledCourses(token, dispatch){
             toast.error("Could Not Get Enrolled Courses")
         }
         toast.dismiss(toastId)
-        // return result
-        return [{
-          thumbnail: 'https://api.dicebear.com/5.x/initials/svg?seed=b%20b',
-          courseName: 'Course 1',
-          courseDescription: 'This is the description for Course 1',
-          totalDuration: '6 hours',
-          progressPercentage: 25,
-        },
-        {
-          thumbnail: 'https://api.dicebear.com/5.x/initials/svg?seed=b%20b',
-          courseName: 'Course 1',
-          courseDescription: 'This is the description for Course 1',
-          totalDuration: '6 hours',
-          progressPercentage: 25,
-        },
-        {
-          thumbnail: 'https://api.dicebear.com/5.x/initials/svg?seed=b%20b',
-          courseName: 'Course 1',
-          courseDescription: 'This is the description for Course 1.This is the description for Course 1',
-          totalDuration: '6 hours',
-          progressPercentage: 25,
-        }];
+        return result
 }
 

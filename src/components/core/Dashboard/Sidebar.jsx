@@ -10,27 +10,27 @@ import '../../../Styles/Dashboard/SideBar.css'
 import Overlay from '../../common/Overlay'
 import useOnClickOutside from '../../../hooks/useOnClickOutside'
 
-const Sidebar = ({sidebar, closeSidebar}) => {
+const Sidebar = ({sidebar, isSmallScreen, closeSidebar}) => {
 
     const {user, loading: profileLoading} = useSelector((state) => state.profile);
     const {loading:authLoading} = useSelector((state)=>state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [confirmationModal, setConfirmationModal] = useState(null);
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1024); 
+    // const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1024); 
 
     const ref = useRef(null);
     useOnClickOutside(ref, isSmallScreen ? closeSidebar: ()=>{return});
     
-    useEffect(() => {
-        const handleResize = () => {
-            setIsSmallScreen(window.innerWidth <= 1024);
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         setIsSmallScreen(window.innerWidth <= 1024);
+    //     };
 
-        window.addEventListener('resize', handleResize);
+    //     window.addEventListener('resize', handleResize);
 
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    //     return () => window.removeEventListener('resize', handleResize);
+    // }, []);
 
     const close = () => {
         closeSidebar();
@@ -101,8 +101,8 @@ const Sidebar = ({sidebar, closeSidebar}) => {
         { // Confirmation modal
                 confirmationModal && 
                 <>
-                    <Overlay/>                
-                    <ConfirmationModal modalData={confirmationModal} closeModal={()=>setConfirmationModal(null)}/>
+                    {isSmallScreen ? (sidebar && <Overlay/>): (<Overlay/>)}             
+                    <ConfirmationModal modalFor={"logout"} modalData={confirmationModal} closeModal={()=>setConfirmationModal(null)}/>
                 </>
         }
     </div>

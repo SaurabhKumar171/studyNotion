@@ -64,7 +64,7 @@ const Settings = () => {
                 confirmationModal && 
                 <>
                     <Overlay/>                    
-                    <ConfirmationModal modalData={confirmationModal} closeModal={()=>setConfirmationModal(null)}/>
+                    <ConfirmationModal modalFor={"deleteAccount"} modalData={confirmationModal} closeModal={()=>setConfirmationModal(null)}/>
                 </>
             }
       </div>
