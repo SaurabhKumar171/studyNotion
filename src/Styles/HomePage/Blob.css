@@ -1,0 +1,11 @@
+.blob {
+  position: absolute;
+  opacity: 0.5;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  /* animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards; */
+  filter: blur(40px);
+  z-index: 1;
+  /* background: linear-gradient(hsl(198, 82%, 63%) 100%,hsl(198, 82%, 63%) 100%); */
+}
+  
