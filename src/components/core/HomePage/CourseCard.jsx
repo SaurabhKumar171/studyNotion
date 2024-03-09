@@ -7,7 +7,7 @@ import { ImTree } from "react-icons/im";
 const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
   return (
     <div
-      className={`w-[360px] lg:w-[30%] ${
+      className={`w-[245px] min-[360px]:w-[20rem] xs:w-[360px] lg:w-[30%] ${
         currentCard === cardData?.heading
           ? "bg-white shadow-[12px_12px_0_0] shadow-yellow-50"
           : "bg-richblack-800"
@@ -38,7 +38,7 @@ const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
         </div>
 
         {/* Flow Chart */}
-        <div className="flex items-center gap-2 text-[16px]">
+        <div className="flex items-baseline gap-2 text-[16px]">
           <ImTree />
           <p>{cardData?.lessionNumber} Lession</p>
         </div>

@@ -73,26 +73,26 @@ const Navbar = () => {
                                 <IoIosArrowDropdownCircle/>
 
                                 <div className='invisible absolute left-[50%]
-                                    translate-x-[-50%] translate-y-[80%]
-                                 top-[50%]
+                                translate-x-[-50%] translate-y-[80%]
+                                -top-8
                                 flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900
                                 opacity-0 transition-all duration-200 group-hover:visible
-                                group-hover:opacity-100 lg:w-[300px] z-1'>
+                                group-hover:opacity-100 lg:w-[300px] z-[1]'>
 
-                                <div className='absolute left-[50%] top-0
-                                translate-x-[80%]
-                                translate-y-[-45%] h-6 w-6 rotate-45 rounded bg-richblack-5'>
-                                </div>
+                                    <div className='absolute left-[50%] top-0
+                                    translate-x-[80%]
+                                    translate-y-[-45%] h-6 w-6 rotate-45 rounded bg-richblack-5'>
+                                    </div>
 
-                                {
-                                    subLinks.length ? (
-                                            subLinks.map( (subLink, index) => (
-                                                <Link to={`${subLink.link}`} key={index}>
-                                                    <p>{subLink.title}</p>
-                                                </Link>
-                                            ) )
-                                    ) : (<div></div>)
-                                }
+                                    {
+                                        subLinks.length ? (
+                                                subLinks.map( (subLink, index) => (
+                                                    <Link to={`${subLink.link}`} key={index} className='capitalize hover:bg-richblack-25 p-2 text-lg rounded-md'>
+                                                        <p>{subLink.title}</p>
+                                                    </Link>
+                                                ) )
+                                        ) : (<div></div>)
+                                    }
 
                                 </div>
 
@@ -120,7 +120,7 @@ const Navbar = () => {
         <div className='flex gap-x-4 items-center'>
 
             {
-                user && user?.accountType != "Instructor" && (
+                user && user?.accountType !== "Instructor" && (
                     <Link to="/dashboard/cart" className='relative'>
                         <AiOutlineShoppingCart />
                         {

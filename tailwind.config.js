@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      'xs': '450px',
+      'typeAnimate': '510px',
+    },
     fontFamily: {
       inter: ["Inter", "sans-serif"],
       "edu-sa": ["Edu SA Beginner", "cursive"],
@@ -124,6 +128,18 @@ module.exports = {
         800: "#171717",
         900: "#141414",
       },
+      "purple":{
+        800:"#8a2be2"
+      },
+      "orange":{
+        "normal":"#ffa500"
+      },
+      "cyan":{
+        "400":"#12D8FA"
+      },
+      "green":{
+        "400":"#A6FFCB "
+      }
     },
     extend: {
       maxWidth: {
