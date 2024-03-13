@@ -24,7 +24,7 @@ const RenderSteps = () => {
 
   return (
     <>
-        <div>
+        <div className='flex justify-between items-center mb-4'>
             { steps.map((item) => (
                     <>
                         <div>
@@ -44,7 +44,7 @@ const RenderSteps = () => {
                     </>
                 ))}
         </div>
-        <div>
+        <div className='flex justify-between items-center mb-4'>
             {
                 steps.map((item, index) => (
                     <>

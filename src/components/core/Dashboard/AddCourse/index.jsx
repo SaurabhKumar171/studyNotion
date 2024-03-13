@@ -16,16 +16,16 @@ const AddCourse = () => {
 
 
   return (
-    <div className='text-white mx-auto w-8/12'>
-         <div>
+    <div className='flex items-baseline text-white mx-auto w-11/12 gap-x-6'>
+         <div className='w-8/12'>
             <h1>Add Course</h1>
             <div>
                 <RenderSteps/>
             </div>
          </div>
-         <div>
-            <p>code upload tips</p>
-            <ul>
+         <div className='rounded-md border-richblack-700 bg-richblack-800 text-richblack-5 p-6 inline-flex flex-col w-3/12'>
+            <p className='text-lg'>code upload tips</p>
+            <ul className='text-md'>
                 {
                     courseTips.map((tip, index)=> (
                         <li key={index}>{tip}</li>
