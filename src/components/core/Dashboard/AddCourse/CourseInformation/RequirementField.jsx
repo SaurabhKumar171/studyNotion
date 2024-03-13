@@ -19,7 +19,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
     const handleAddRequirement = () => {
         if(requirement) {
             setRequirementList([...requirementList, requirement]);
-            //setRequirement("");
+            setRequirement("");
         }
     }
 

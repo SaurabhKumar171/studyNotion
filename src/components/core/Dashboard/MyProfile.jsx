@@ -47,9 +47,10 @@ const MyProfile = () => {
             <div className='bg-richblack-800 flex flex-col p-4 rounded-lg'>
                 <div className='flex justify-between items-center max-[280px]:flex-col-reverse'>
                     <img 
-                    src={user?.image}
-                    alt={`profile-${user?.firstName}`}
-                    className='aspect-square w-[78px] rounded-full object-cover max-[280px]:self-start' />
+                        src={user?.image}
+                        alt={`profile-${user?.firstName}`}
+                        className='aspect-square w-[78px] rounded-full object-cover max-[280px]:self-start' 
+                    />
 
                     <IconBtn
                         text="Edit"

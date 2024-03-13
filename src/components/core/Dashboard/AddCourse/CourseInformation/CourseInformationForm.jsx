@@ -9,6 +9,8 @@ import { setStep, setCourse} from '../../../../../slices/courseSlice';
 import IconBtn from '../../../../common/IconBtn';
 import { COURSE_STATUS } from '../../../../../utils/constants';
 import { toast } from 'react-hot-toast';
+import ChipInput from './ChipInput'
+import Upload from '../Upload';
 
 const CourseInformationForm = () => {
 
@@ -52,14 +54,13 @@ const CourseInformationForm = () => {
 
     const isFormUpdated = () => {
         const currentValues = getValues();
-        if(currentValues.courseTitle !== course.courseName ||
+        if( currentValues.courseTitle !== course.courseName ||
             currentValues.courseShortDesc !== course.courseDescription ||
             currentValues.coursePrice !== course.price ||
-            currentValues.courseTitle !== course.courseName ||
-            //currentValues.courseTags.toString() !== course.tag.toString() ||
+            currentValues.courseTags.toString() !== course.tag.toString() ||
             currentValues.courseBenefits !== course.whatYouWillLearn ||
             currentValues.courseCategory._id !== course.category._id ||
-            //currentValues.courseImage !== course.thumbnail ||
+            currentValues.courseImage !== course.thumbnail ||
             currentValues.courseRequirements.toString() !== course.instructions.toString() )
             return true;
         else
@@ -68,10 +69,10 @@ const CourseInformationForm = () => {
 
     //handles next button click 
     const onSubmit = async(data) => {
-
+        console.log("here",data);
         if(editCourse) {
             if(isFormUpdated()) {
-                const currentValues = getValues();
+            const currentValues = getValues();
             const formData = new FormData();
 
             formData.append("courseId", course._id);
@@ -93,6 +94,14 @@ const CourseInformationForm = () => {
 
             if(currentValues.courseCategory._id !== course.category._id) {
                 formData.append("category", data.courseCategory);
+            }
+
+            if(currentValues.courseTags.toString() !== course.tag.toString()) {
+                formData.append("tag", JSON.stringify(data.courseTags));
+            }
+
+            if(currentValues.courseImage !== course.thumbnail) {
+                formData.append("thumbnail", data.courseImage);
             }
 
             if(currentValues.courseRequirements.toString() !== course.instructions.toString()) {
@@ -140,10 +149,17 @@ const CourseInformationForm = () => {
 
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter" && e.target.type !== "textarea") {
+            e.preventDefault();
+        }
+    };
+
   return (
     <form
-    onSubmit={handleSubmit(onSubmit)}
-    className='rounded-md border-richblack-700 bg-richblack-800 p-6 space-y-8'
+        onSubmit={handleSubmit(onSubmit)}
+        onKeyDown={handleKeyDown}
+        className='rounded-md border-richblack-700 bg-richblack-800 p-6 space-y-8'
     >
         <div>
             <label  htmlFor='courseTitle'>Course Title<sup>*</sup></label>
@@ -220,7 +236,7 @@ const CourseInformationForm = () => {
         </div>
 
         {/* create a custom component for handling tags input */}
-        {/* <ChipInput
+        <ChipInput
             label="Tags"
             name="courseTags"
             placeholder="Enter tags and press enter"
@@ -228,16 +244,17 @@ const CourseInformationForm = () => {
             errors={errors}
             setValue={setValue}
             getValues = {getValues}
-        /> */}
+        />
 
         {/* create a component for uploading and showing preview of media */}
-        {/* <Upload
-            name=
-            label=
-            register={}
-            errors=
-            setValue={}
-            /> */}
+        <Upload
+            name="courseImage"
+            label="Course Thumbnail"
+            register={register}
+            setValue={setValue}
+            errors={errors}
+            editData={editCourse ? course?.thumbnail : null}
+        />
         
         {/*     Benefits of the Course */}
         <div>
