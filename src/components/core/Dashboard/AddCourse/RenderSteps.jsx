@@ -25,7 +25,7 @@ const RenderSteps = () => {
   return (
     <>
         <div className='flex justify-between items-center mb-4'>
-            { steps.map((item) => (
+            { steps.map((item, index) => (
                     <>
                         <div>
                             <div className={`${item.id === step ? 
@@ -40,7 +40,11 @@ const RenderSteps = () => {
                                 
                             </div>  
                         </div>  
-                        {/* add code for dashes b/w labels */}
+                        {/* Dashes b/w labels */}
+                        { 
+                            steps.length- 1 !== index && 
+                            (<div className="h-[4px] border-b border-dashed border-yellow-25 w-full"></div>)
+                        }
                     </>
                 ))}
         </div>
