@@ -24,7 +24,7 @@ const RenderTotalAmount = () => {
         <IconBtn
             text="Buy Now"
             onclick={handleBuyCourses}
-            customClasses={"w-full justify-center w-full py-2 font-medium mt-2"}
+            customClasses={"flex flex-row-reverse w-full justify-center w-full py-2 font-medium mt-2 bg-yellow-50"}
         />
     </div>
   )

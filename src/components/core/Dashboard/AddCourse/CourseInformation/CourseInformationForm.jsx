@@ -83,10 +83,6 @@ export default function CourseInformationForm() {
     // console.log(data)
 
     if (editCourse) {
-      // const currentValues = getValues()
-      // console.log("changes after editing form values:", currentValues)
-      // console.log("now course:", course)
-      // console.log("Has Form Changed:", isFormUpdated())
       if (isFormUpdated()) {
         const currentValues = getValues()
         const formData = new FormData()
@@ -287,6 +283,7 @@ export default function CourseInformationForm() {
       <RequirementsField
         name="courseRequirements"
         label="Requirements/Instructions"
+        placeholder="Enter course Requirements"
         register={register}
         setValue={setValue}
         errors={errors}
@@ -306,6 +303,7 @@ export default function CourseInformationForm() {
         <IconBtn
           disabled={loading}
           text={!editCourse ? "Next" : "Save Changes"}
+          customClasses={"flex flex-row-reverse bg-yellow-50"}
         >
           <MdNavigateNext />
         </IconBtn>

@@ -58,7 +58,7 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
             value={tag}
             onChange={(e) => handleAddTags(e)}
             onKeyDown={(e) => handleAddTags(e)}
-            className='w-full'
+            className='w-full form-style'
         />
       </div>
       {

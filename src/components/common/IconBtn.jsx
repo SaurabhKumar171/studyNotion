@@ -14,7 +14,7 @@ const IconBtn = ({
     disabled={disabled}
     onClick={onclick}
     type={type}
-    className={`flex flex-row-reverse gap-2 bg-yellow-50 text-black justify-center items-center px-3 font-inter rounded-md text-normal hover:scale-95 transition-all duration-200 py-1 ${customClasses}`}>
+    className={`gap-2 text-black justify-center items-center px-3 font-inter rounded-md text-normal hover:scale-95 transition-all duration-200 py-1 ${customClasses}`}>
         {
             children ? (
                 <>
