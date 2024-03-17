@@ -26,6 +26,7 @@ const ConfirmationModal = ({modalFor, modalData, closeModal}) => {
                     <IconBtn 
                         onclick={modalData?.btn1Handler}
                         text={modalData?.btn1Text}
+                        customClasses={"flex flex-row-reverse bg-yellow-50"}
                         />
                     <button onClick={modalData?.btn2Handler} className='cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-medium text-richblack-50'>
                         {modalData?.btn2Text}

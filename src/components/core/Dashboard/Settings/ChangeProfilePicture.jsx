@@ -79,7 +79,7 @@ const ChangeProfilePicture = () => {
                     <IconBtn 
                         text={loading?"Uploading...":"Upload"}
                         onclick={onHandleFileUpload}
-                        customClasses={"max-[301px]:w-full"}
+                        customClasses={"flex flex-row-reverse max-[301px]:w-full bg-yellow-50"}
                     > 
                         <MdOutlineFileUpload />  
                     </IconBtn>  

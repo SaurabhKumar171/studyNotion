@@ -104,7 +104,7 @@ export default function UpdatePassword() {
           >
             Cancel
           </button>
-          <IconBtn type="submit" text="Update" customClasses={"font-medium"}/>
+          <IconBtn type="submit" text="Update" customClasses={"flex flex-row-reverse font-medium bg-yellow-50"}/>
         </div>
       </form>
     </>

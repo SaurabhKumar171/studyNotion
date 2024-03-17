@@ -57,7 +57,7 @@ const MyProfile = () => {
                         onclick={() => {
                             navigate("/dashboard/settings")
                         }}
-                        customClasses={"self-start max-[370px]:-ml-10 max-[280px]:self-end max-[280px]:mb-[0.5em]"}>
+                        customClasses={"flex flex-row-reverse self-start max-[370px]:-ml-10 max-[280px]:self-end max-[280px]:mb-[0.5em] bg-yellow-50"}>
                             <MdEditDocument />
                     </IconBtn>
                 </div>
@@ -75,7 +75,8 @@ const MyProfile = () => {
                     text="Edit"
                     onclick={() => {
                         navigate("/dashboard/settings")
-                    }}>
+                    }}
+                    customClasses={"flex flex-row-reverse bg-yellow-50"}>
                         <MdEditDocument />
                     </IconBtn>
                 </div>
@@ -93,7 +94,7 @@ const MyProfile = () => {
                         onclick={() => {
                             navigate("/dashboard/settings")
                         }}
-                        customClasses={`max-[280px]:self-end max-[280px]:mb-[0.5em]`}>
+                        customClasses={`flex flex-row-reverse max-[280px]:self-end max-[280px]:mb-[0.5em] bg-yellow-50`}>
                         <MdEditDocument />    
                     </IconBtn>
                 </div>

@@ -39,7 +39,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
                 id={name}
                 value={requirement}
                 onChange={(e) => setRequirement(e.target.value)}
-                className='w-full'
+                className='w-full form-style'
             />
             <button
             type='button'

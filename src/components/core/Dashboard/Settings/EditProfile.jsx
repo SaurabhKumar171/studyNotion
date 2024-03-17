@@ -190,7 +190,7 @@ export default function EditProfile() {
           >
             Cancel
           </button>
-          <IconBtn type="submit" text="Save" customClasses={"font-medium"}/>
+          <IconBtn type="submit" text="Save" customClasses={"flex flex-row-reverse font-medium bg-yellow-50"}/>
         </div>
       </form>
     </>
