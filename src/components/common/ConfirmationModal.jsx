@@ -10,8 +10,9 @@ const ConfirmationModal = ({modalFor, modalData, closeModal}) => {
   return (
         <div 
             className={`
-                        ${modalFor==="deleteAccount" && "right-[10%] min-[281px]:right-[16%] min-[370px]:right-[18%] min-[475px]:right-[6rem] min-[570px]:right-[8rem] md:right-[12rem] lg:right-[18rem] xl:right-[26rem] min-[1420px]:right-[40%] top-[17rem] md:top-[32rem] lg:top-[28rem] xl:top-[14rem]"}
-                        ${modalFor==="logout" && "left-[1rem] min-[300px]:left-[4rem] min-[400px]:left-[7rem] sm:left-[15rem] md:left-[19rem] lg:left-[22rem] xl:left-[32rem] top-[13rem] md:top-[20rem] lg:top-[10rem] xl:top-[17rem]"}
+                        ${modalFor==="deleteAccount" ? "right-[10%] min-[281px]:right-[16%] min-[370px]:right-[18%] min-[475px]:right-[6rem] min-[570px]:right-[8rem] md:right-[12rem] lg:right-[18rem] xl:right-[26rem] min-[1420px]:right-[40%] top-[17rem] md:top-[32rem] lg:top-[28rem] xl:top-[14rem]":""}
+                        ${modalFor==="logout" ? "left-[1rem] min-[300px]:left-[4rem] min-[400px]:left-[7rem] sm:left-[15rem] md:left-[19rem] lg:left-[22rem] xl:left-[32rem] top-[13rem] md:top-[20rem] lg:top-[10rem] xl:top-[17rem]":""}
+                        ${modalFor==="deleteCourse" ? "right-[3rem] top-[3rem] w-[24rem]":""}
                         rounded-md bg-richblack-800 p-3 w-[15rem] min-[450px]:w-[20rem] sm:w-[25rem] mx-auto absolute  z-50 transition-all duration-300`} 
             ref={ref}
         >

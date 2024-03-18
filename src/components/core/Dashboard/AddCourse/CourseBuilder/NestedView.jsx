@@ -51,19 +51,19 @@ const NestedView = ({handleChangeEditSectionName}) => {
     }
 
   return (
-    <div className='text-richblack-5'>
+    <div className='text-richblack-50 relative'>
         
         <div className='mt-10 rounded-lg bg-richblack-700 p-6 px-8'>
             {
                 course?.courseContent.map((section) => (
                     <details key={section._id} open>
                         
-                        <summary className='flex justify-between items-center gap-x-3 border-b-2'>
+                        <summary className='flex justify-between items-center gap-x-3 border-b-[0.3px] border-richblack-400 pb-2'>
                             <div className='flex items-center gap-x-3'>
-                                <RxDropdownMenu />
+                                <RxDropdownMenu className='text-richblack-400'/>
                                 <p>{section?.sectionName}</p>
                             </div>
-                            <div className='flex items-center gap-x-3'>
+                            <div className='flex items-center gap-x-3 text-richblack-400'>
                                 <button 
                                     onClick={() => handleChangeEditSectionName(section.sectionName, section._id)}
                                 >
@@ -92,7 +92,7 @@ const NestedView = ({handleChangeEditSectionName}) => {
                             </div>
                         </summary>
 
-                        <div>
+                        <div className="mb-4">
                             {
                                 section?.subSection.map((data)=>(
                                     
@@ -137,7 +137,7 @@ const NestedView = ({handleChangeEditSectionName}) => {
 
                             <button
                                 onClick={() => setAddSubSection(section._id)}
-                                className='mt-4 flex items-center gap-x-2 text-yellow-50'
+                                className='mt-4 flex items-center gap-x-2 text-yellow-50 text-sm'
                             >
                                 <AiOutlinePlus />
                                 <p>Add lecture</p>
@@ -180,7 +180,7 @@ const NestedView = ({handleChangeEditSectionName}) => {
             confirmationModal ? (
                 <>
                     <Overlay/> 
-                    <ConfirmationModal modalData={confirmationModal}/>
+                    <ConfirmationModal modalData={confirmationModal} modalFor={"deleteCourse"}/>
                 </>
             ) : (
                 <div></div>

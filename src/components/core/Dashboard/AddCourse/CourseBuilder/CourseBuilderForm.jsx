@@ -85,14 +85,14 @@ const CourseBuilderForm = () => {
   }
 
   return (
-    <div>
-      <p>Course Builder</p>
+    <div className="rounded-md border-richblack-700 bg-richblack-800 text-richblack-5 p-6">
+      <p className='font-inter font-semibold text-lg mb-4'>Course Builder</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>Section name<sup>*</sup></label>
           <input 
               id='sectionName'
-              placeholder='Add  section name'
+              placeholder='Add a section to build your course'
               {...register('sectionName',{
                   required: true,
                   minLength: 5,
@@ -111,9 +111,9 @@ const CourseBuilderForm = () => {
               type="Submit"
               text={editSectionName ? "Edit section name":"Create section"}
               outline={true}
-              customClasses={"text-white bg-richblack-800 text-yellow-50 flex flex-row"}
+              customClasses={"text-white bg-richblack-800 border-2 border-yellow-50 text-yellow-50 flex flex-row"}
           >
-              < FiPlusCircle className='text-yellow-50' size={15}/>
+              <FiPlusCircle className='text-yellow-50' size={15}/>
           </IconBtn>
 
           {

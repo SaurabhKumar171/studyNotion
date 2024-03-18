@@ -25,18 +25,19 @@ const RenderSteps = () => {
 
   return (
     <>
-        <div className='flex justify-between items-center mb-4'>
+        <div className='flex justify-between items-center mb-4 mt-8 w-7/12 ml-28'>
             { steps.map((item, index) => (
                     <>
                         <div>
                             <div className={`${item.id === step ? 
-                                            "bg-yellow-900 border-yellow-50 text-yellow-50" : 
-                                            "border-richblack-700 bg-richblack-800 text-richblack-300"}`
+                                            "bg-yellow-900 border border-yellow-50 text-yellow-50" : 
+                                            "border-richblack-700 bg-richblack-800 text-richblack-300"}
+                                            ${step > item.id ? "bg-yellow-50":""}
+                                            rounded-full w-8 h-8 flex justify-center items-center`
                                             }
                             >
-
                                 {
-                                    step > item.id ? (<FaCheck />) : (item.id)
+                                    step > item.id ? (<FaCheck className="text-richblack-800"/>) : (item.id)
                                 }
                                 
                             </div>  
@@ -49,12 +50,12 @@ const RenderSteps = () => {
                     </>
                 ))}
         </div>
-        <div className='flex justify-between items-center mb-4'>
+        <div className='flex justify-between items-center mb-4 w-[64%] ml-20 mx-auto'>
             {
                 steps.map((item, index) => (
                     <>
                         <div key={index}>
-                            <p>{item.title}</p>
+                            <p className='capitalize'>{item.title}</p>
                         </div>
                     </>
                 ))

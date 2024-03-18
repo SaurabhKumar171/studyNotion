@@ -303,7 +303,7 @@ export default function CourseInformationForm() {
         <IconBtn
           disabled={loading}
           text={!editCourse ? "Next" : "Save Changes"}
-          customClasses={"flex flex-row-reverse bg-yellow-50"}
+          customClasses={"flex flex-row bg-yellow-50"}
         >
           <MdNavigateNext />
         </IconBtn>
