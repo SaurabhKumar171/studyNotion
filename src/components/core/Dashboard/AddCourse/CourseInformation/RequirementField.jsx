@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const RequirementField = ({name, label, register, errors, setValue, getValues}) => {
+const RequirementField = ({name, label, register, errors, setValue, getValues, placeholder}) => {
     const [requirement, setRequirement] = useState("");
     const [requirementList, setRequirementList] = useState([]);
 
@@ -37,6 +37,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
             <input
                 type='text'
                 id={name}
+                placeholder={placeholder}
                 value={requirement}
                 onChange={(e) => setRequirement(e.target.value)}
                 className='w-full form-style'
@@ -54,7 +55,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
                 <ul>
                     {
                         requirementList.map((requirement, index) => (
-                            <li key={index} className='flex items-center text-richblack-5'>
+                            <li key={index} className='flex items-center text-richblack-5 gap-x-2'>
                                 <span>{requirement}</span>
                                 <button
                                 type='button'
@@ -69,7 +70,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
             )
         }
         {errors[name] && (
-            <span>
+            <span className="ml-2 text-xs tracking-wide text-pink-200">
                 {label} is required
             </span>
         )}

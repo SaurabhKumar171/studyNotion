@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { RxCross2 } from "react-icons/rx";
 
 const ChipInput = ({name, label, placeholder, register, errors, setValue, getValues}) => {
 
@@ -18,9 +19,12 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
     },[tagsList])
 
     const handleAddTags = (e) => {
-      if ((e.target.value.endsWith(",") || e.key === "Enter") && tag.trim() !== '') {
-        setTagsList([...tagsList, tag]);
-        setTag("");
+      if (e.target.value.endsWith(',') || e.key === 'Enter') {
+        e.preventDefault(); // Prevent form submission if user pressed enter
+        if (tag.trim() !== '') {
+          setTagsList([...tagsList, tag.trim()]);
+          setTag('');
+        }
       } else {
         setTag(e.target.value);
       }
@@ -39,9 +43,11 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
             {
               tagsList.length > 0 && (
                 tagsList.map((tag, index)=> (
-                  <span key={index} className='flex gap-x-1'>
+                  <span key={index} className='flex items-center gap-x-1 bg-yellow-500 mb-2 text-richblack-25 rounded-3xl p-1 px-2'>
                     <p>{tag}</p>
-                    <p className='text-white cursor-pointer' onClick={() => handleRemoveTags(index)}>remove</p>
+                    <p className='text-white cursor-pointer' onClick={() => handleRemoveTags(index)}>
+                      <RxCross2 />
+                    </p>
                   </span>
                 ))
               )
@@ -63,7 +69,7 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
       </div>
       {
         errors[name] && (
-              <span>
+              <span className="ml-2 text-xs tracking-wide text-pink-200" role="alert">
                   {label} is required
               </span>
           )

@@ -16,19 +16,19 @@ const AddCourse = () => {
 
 
   return (
-    <div className='flex items-baseline text-white mx-auto w-11/12 gap-x-6'>
-         <div className='w-8/12'>
+    <div className='flex gap-x-7 items-baseline text-white ml-10 w-[90%]'>
+         <div className='w-[86%]'>
             <h1>Add Course</h1>
             <div>
                 <RenderSteps/>
             </div>
          </div>
-         <div className='rounded-md border-richblack-700 bg-richblack-800 text-richblack-5 p-6 inline-flex flex-col w-3/12'>
-            <p className='text-lg'>code upload tips</p>
-            <ul className='text-md'>
+         <div className='rounded-md border-richblack-700 bg-richblack-800 text-richblack-5 py-6 flex flex-col justify-center items-baseline mt-6'>
+            <p className='text-lg mb-4 ml-4'>⚡Course Upload Tips</p>
+            <ul className='text-md p-6'>
                 {
                     courseTips.map((tip, index)=> (
-                        <li key={index}>{tip}</li>
+                        <li key={index} className='text-xs list-disc mb-4'>{tip}</li>
                     ))
                 }
             </ul>
