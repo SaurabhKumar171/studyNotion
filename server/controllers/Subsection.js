@@ -1,6 +1,6 @@
 // Import necessary modules
 const Section = require("../models/Section");
-const SubSection = require("../models/Subsection");
+const SubSection = require("../models/SubSection");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
 // Create a new sub-section for a given section
@@ -54,8 +54,8 @@ exports.createSubSection = async (req, res) => {
   
   exports.updateSubSection = async (req, res) => {
     try {
-      const { sectionId, title, description } = req.body
-      const subSection = await SubSection.findById(sectionId)
+      const { sectionId, subSectionId, title, description } = req.body;
+      const subSection = await SubSection.findById(subSectionId);
   
       if (!subSection) {
         return res.status(404).json({
@@ -82,10 +82,13 @@ exports.createSubSection = async (req, res) => {
       }
   
       await subSection.save()
+
+      const updatedSection = await Section.findById(sectionId).populate("subSection")
   
       return res.json({
         success: true,
         message: "Section updated successfully",
+        data: updatedSection,
       })
     } catch (error) {
       console.error(error)
@@ -115,9 +118,12 @@ exports.createSubSection = async (req, res) => {
           .json({ success: false, message: "SubSection not found" })
       }
   
+      const updatedSection = await Section.findById(sectionId).populate("subSection")
+
       return res.json({
         success: true,
         message: "SubSection deleted successfully",
+        data: updatedSection,
       })
     } catch (error) {
       console.error(error)

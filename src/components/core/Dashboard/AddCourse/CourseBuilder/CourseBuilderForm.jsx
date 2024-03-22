@@ -29,6 +29,7 @@ const CourseBuilderForm = () => {
   }
 
   const goToNext = () => {
+    console.log("here");
       if(course?.courseContent?.length === 0){
           toast.error("Please add at least one section");
           return ;
@@ -68,6 +69,7 @@ const CourseBuilderForm = () => {
 
       //set updated course in course slice
       if(result){
+        console.log("result....",result);
         dispatch(setCourse(result));
         setEditSectionName(null);
         setValue("sectionName", "");
@@ -144,7 +146,7 @@ const CourseBuilderForm = () => {
           Back
         </button>
 
-        <IconBtn text={"Next"} onClick={goToNext} customClasses={"bg-yellow-50 flex flex-row"}>
+        <IconBtn text={"Next"} onclick={goToNext} customClasses={"bg-yellow-50 flex flex-row"}>
           <MdOutlineNavigateNext size={15}/>
         </IconBtn>
       </div>

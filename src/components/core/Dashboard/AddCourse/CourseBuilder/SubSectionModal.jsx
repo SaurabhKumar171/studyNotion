@@ -67,8 +67,11 @@ const SubSectionModal = ({
           // API call
           const result = await updateSubSection(formData, token);
           if(result){
-            // TODO:same check (what  else we can do here)
-            dispatch(setCourse(result));
+            const updatedCourseContent = course.courseContent.map((section)=>
+              section._id === result._id ? result : section
+            );
+            const updatedCourse = {...course, courseContent: updatedCourseContent};
+            dispatch(setCourse(updatedCourse));
           }
 
           setModalData(null);
@@ -101,8 +104,12 @@ const SubSectionModal = ({
            const result = await createSubSection(formData, token);
 
            if(result){
-              // TODO:same check (what  else we can do here)
-              dispatch(setCourse(result))
+              const updatedCourseContent = course.courseContent.map((section)=>
+                section._id === modalData ? result : section
+              );
+              
+              const updatedCourse = {...course, courseContent: updatedCourseContent};
+              dispatch(setCourse(updatedCourse))
             }
 
             setModalData(null);
@@ -116,7 +123,14 @@ const SubSectionModal = ({
           <div>
               <p>{view ? "viewing" : add ? "adding": edit ? "editing":""} Lecture</p>
               <button 
-                  onClick={() => (!loading ? setModalData(null): {})}
+                  onClick={
+                            (e) => { 
+                                      if(!loading){
+                                        setModalData(null)
+                                        e.stopPropagation()
+                                      }
+                                    }
+                          }
               >
                   <RxCross1 />
               </button>
@@ -167,7 +181,8 @@ const SubSectionModal = ({
 
               <div>
                  <IconBtn
-                     text={loading ? "Loading..." : edit ? "Save changes" : "Save"}
+                     text={loading ? "Loading..." : edit ? "Save changes" : add ? "Save" : ""}
+                     customClasses={"bg-yellow-50"}
                  />
               </div>
           </form>
