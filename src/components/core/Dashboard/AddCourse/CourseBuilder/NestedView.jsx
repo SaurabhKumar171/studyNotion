@@ -45,7 +45,12 @@ const NestedView = ({handleChangeEditSectionName}) => {
         }) 
 
         if(result){
-            dispatch(setCourse(result));
+            const updatedCourseContent = course.courseContent.map((section)=>
+              section._id === sectionId ? result : section
+            );
+            
+            const updatedCourse = {...course, courseContent: updatedCourseContent};
+            dispatch(setCourse(updatedCourse));
         }
         setConfirmationModal(null);
     }
@@ -106,7 +111,10 @@ const NestedView = ({handleChangeEditSectionName}) => {
                                             <p>{data?.title}</p>
                                         </div>
 
-                                        <div className='flex items-center gap-x-3'>
+                                        <div 
+                                            className='flex items-center gap-x-3'
+                                            onClick={e=> e.stopPropagation()}
+                                        >
                                             <button 
                                                 onClick={()=> setEditSubSection({...data, sectionId: section?._id})}
                                             >
