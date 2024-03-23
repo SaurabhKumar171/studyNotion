@@ -28,7 +28,7 @@ const CoursePublishForm = () => {
 
     const goToCourses = () => {
         dispatch(resetCourseState());
-        // navigate("/dashboard/my-courses");
+        navigate("/dashboard/my-courses");
     }
 
     const handleCoursePublish = async () => {
