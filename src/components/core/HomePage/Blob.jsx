@@ -3,7 +3,7 @@ import '../../../Styles/HomePage/Blob.css'
 
 const Blob = ({customClasses}) => {
   return (
-        <div class={`blob ${customClasses}`}></div>  
+        <div className={`blob ${customClasses}`}></div>  
     )
 }
 

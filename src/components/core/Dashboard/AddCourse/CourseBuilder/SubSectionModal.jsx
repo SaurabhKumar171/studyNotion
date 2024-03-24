@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {useForm} from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
@@ -7,6 +7,8 @@ import { setCourse } from '../../../../../slices/courseSlice';
 import { RxCross1 } from 'react-icons/rx';
 import Upload from '../Upload';
 import IconBtn from '../../../../common/IconBtn';
+import Overlay from '../../../../common/Overlay';
+import useOnClickOutside from '../../../../../hooks/useOnClickOutside';
 
 const SubSectionModal = ({
                             modalData ,
@@ -26,6 +28,9 @@ const SubSectionModal = ({
         const {course} = useSelector((state) => state.course);
         const {token} = useSelector((state)=> state.auth); 
         const [loading , setLoading] = useState(false);
+        const ref = useRef(null);
+
+        useOnClickOutside(ref, () => setModalData(null))
 
         useEffect(()=>{
           if(view || edit){
@@ -117,79 +122,85 @@ const SubSectionModal = ({
       }  
 
   return (
-    <div>
-       
-       <div>
-          <div>
-              <p>{view ? "viewing" : add ? "adding": edit ? "editing":""} Lecture</p>
-              <button 
-                  onClick={
-                            (e) => { 
-                                      if(!loading){
-                                        setModalData(null)
-                                        e.stopPropagation()
+    <>
+      <Overlay></Overlay>
+      <div className='absolute top-0 bg-richblack-800 p-2 z-50' ref={ref}>
+        
+        <div>
+            <div>
+                <p>{view ? "viewing" : add ? "adding": edit ? "editing":""} Lecture</p>
+                <button 
+                    onClick={
+                              (e) => { 
+                                        if(!loading){
+                                          setModalData(null)
+                                          e.stopPropagation()
+                                        }
                                       }
-                                    }
-                          }
-              >
-                  <RxCross1 />
-              </button>
-          </div>
+                            }
+                >
+                    <RxCross1 />
+                </button>
+            </div>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
-              
-              <Upload 
-                  name="lectureVideo"
-                  label="lecture video"
-                  register={register}
-                  errors={errors}
-                  setValue={setValue}
-                  video={true}
-                  viewData={view? modalData?.videoUrl : null}
-                  editData={edit? modalData?.videoUrl : null}
-              />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                
+                <Upload 
+                    name="lectureVideo"
+                    label="lecture video"
+                    register={register}
+                    errors={errors}
+                    setValue={setValue}
+                    video={true}
+                    viewData={view? modalData?.videoUrl : null}
+                    editData={edit? modalData?.videoUrl : null}
+                />
 
-              <div>
-                 <label htmlFor="lectureTitle">Lecture title</label>
-                 <input 
-                      id='lectureTitle'
-                      name='lectureTitle'
-                      {...register("lectureTitle", {required : true})}
-                      className='w-full'
-                 />
-                 {
-                    errors.lectureTitle && (
-                      <span>lecture title is required</span>
-                    )
-                 }
-              </div>
+                <div>
+                  <label htmlFor="lectureTitle">Lecture title</label>
+                  <input 
+                        id='lectureTitle'
+                        name='lectureTitle'
+                        {...register("lectureTitle", {required : true})}
+                        className='w-full'
+                  />
+                  {
+                      errors.lectureTitle && (
+                        <span>lecture title is required</span>
+                      )
+                  }
+                </div>
 
-              <div>
-                 <label htmlFor="lectureDescription">Lecture title</label>
-                 <textarea 
-                      id='lectureDescription'
-                      name='lectureDescription'
-                      {...register("lectureDescription", {required : true})}
-                      className='w-full min-h-[130px]'
-                 />
-                 {
-                    errors.lectureDescription && (
-                      <span>lecture description is required</span>
-                    )
-                 }
-              </div>
+                <div>
+                  <label htmlFor="lectureDescription">Lecture title</label>
+                  <textarea 
+                        id='lectureDescription'
+                        name='lectureDescription'
+                        {...register("lectureDescription", {required : true})}
+                        className='w-full min-h-[130px]'
+                  />
+                  {
+                      errors.lectureDescription && (
+                        <span>lecture description is required</span>
+                      )
+                  }
+                </div>
 
-              <div>
-                 <IconBtn
-                     text={loading ? "Loading..." : edit ? "Save changes" : add ? "Save" : ""}
-                     customClasses={"bg-yellow-50"}
-                 />
-              </div>
-          </form>
-       </div>
+                <div>
+                  {  !view ? 
+                      <IconBtn
+                        text={loading ? "Loading..." : edit ? "Save changes" : add ? "Save" : ""}
+                        customClasses={"bg-yellow-50"}
+                    />:
+                    (<></>)
+                  }
+                </div>
+            </form>
+        </div>
 
 
-    </div>
+      </div>
+    </>
   )
 }
 

@@ -4,29 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import IconBtn from '../../common/IconBtn'
 import { useLocation } from 'react-router-dom'
 import { MdEditDocument } from "react-icons/md";
+import { convertUrlToBreadcrumb } from '../../../utils/convertUrlToBreadcrumb';
 
 const MyProfile = () => {
 
     const {user} = useSelector((state) => state.profile)
     const navigate = useNavigate();
     const location = useLocation();
-
-    function convertUrlToBreadcrumb(url) {
-        const parts = url.split('/');
-        const filteredParts = parts.filter(part => part.trim() !== '');
-    
-        const breadcrumbs = filteredParts.map((part, index) => {
-            const capitalizedPart = part.replace(/-/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-            if (index === filteredParts.length - 1) {
-                return capitalizedPart;
-            }
-            return capitalizedPart + ' / ';
-        });
-    
-        const cleanedBreadcrumb = breadcrumbs.join('').replace('Dashboard / ', '');
-    
-        return cleanedBreadcrumb;
-    }
     
     
   return (
@@ -37,7 +21,7 @@ const MyProfile = () => {
                 <span className="text-richblack-300 capitalize text-sm">{`Home   /   Dashboard   /   `}</span>
                 <span className='text-yellow-50'>{convertUrlToBreadcrumb(location.pathname)}</span>
             </div>
-            <h1 className='text-richblack-5 font-inter text-2xl mt-3 '>
+            <h1 className='text-richblack-5 font-inter text-2xl mt-3'>
                 {convertUrlToBreadcrumb(location.pathname)}
             </h1>
         </div>

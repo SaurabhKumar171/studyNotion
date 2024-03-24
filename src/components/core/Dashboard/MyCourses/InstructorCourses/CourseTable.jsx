@@ -31,7 +31,7 @@ const CourseTable = ({courses, setCourses}) => {
 
   return (
     <div className='text-white'>
-        <Table>
+        <Table className="border-[0.1px] border-richblack-300">
           <Thead>
             <Tr className="flex gap-x-10 border-richblack-800 p-8 uppercase">
               <Th>Courses</Th>
