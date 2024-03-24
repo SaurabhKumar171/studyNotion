@@ -61,9 +61,9 @@ const NestedView = ({handleChangeEditSectionName}) => {
         <div className='mt-10 rounded-lg bg-richblack-700 p-6 px-8'>
             {
                 course?.courseContent.map((section) => (
-                    <details key={section._id} open>
+                    <details key={section._id} className="mb-4 text-richblack-50" open>
                         
-                        <summary className='flex justify-between items-center gap-x-3 border-b-[0.3px] border-richblack-400 pb-2'>
+                        <summary className='flex justify-between items-center gap-x-3 border-b-[0.1px] border-richblack-400 pb-2 mb-2'>
                             <div className='flex items-center gap-x-3'>
                                 <RxDropdownMenu className='text-richblack-400'/>
                                 <p>{section?.sectionName}</p>
@@ -104,7 +104,7 @@ const NestedView = ({handleChangeEditSectionName}) => {
                                     <div 
                                         key={data?._id}
                                         onClick={()=>setViewSubSection(data)}
-                                        className='flex items-center justify-between gap-x-3 border-b-2'
+                                        className='flex items-center justify-between gap-x-3 border-b-[0.1px] border-richblack-400 ml-4 pb-2'
                                     >
                                         <div className='flex items-center gap-x-3'>
                                             <RxDropdownMenu />
@@ -112,7 +112,7 @@ const NestedView = ({handleChangeEditSectionName}) => {
                                         </div>
 
                                         <div 
-                                            className='flex items-center gap-x-3'
+                                            className='flex items-center gap-x-3 text-richblack-400'
                                             onClick={e=> e.stopPropagation()}
                                         >
                                             <button 
