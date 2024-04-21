@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const RequirementField = ({name, label, register, errors, setValue, getValues, placeholder}) => {
+const RequirementField = ({name, label, register, errors, setValue, getValues, placeholder, editCourse}) => {
     const [requirement, setRequirement] = useState("");
     const [requirementList, setRequirementList] = useState([]);
 
@@ -11,6 +11,15 @@ const RequirementField = ({name, label, register, errors, setValue, getValues, p
             validate: (value) => value.length > 0
         })
     },[])
+
+    useEffect(()=>{
+        if(editCourse){
+          const currentValues = getValues();
+          console.log("req fie...",currentValues);
+          const fetchedTags = currentValues?.courseTags;
+          setRequirementList(fetchedTags || []);
+        }
+      },[])
 
     useEffect(()=> {
         setValue(name, requirementList);
