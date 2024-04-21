@@ -124,11 +124,11 @@ const SubSectionModal = ({
   return (
     <>
       <Overlay></Overlay>
-      <div className='absolute top-0 bg-richblack-800 p-2 z-50' ref={ref}>
+      <div className='absolute top-[-26rem] bg-richblack-800 z-50 w-full rounded-xl' ref={ref}>
         
         <div>
-            <div>
-                <p>{view ? "viewing" : add ? "adding": edit ? "editing":""} Lecture</p>
+            <div className='flex items-center justify-between p-2 bg-richblack-700'>
+                <p className='capitalize'>{view ? "viewing" : add ? "adding": edit ? "editing":""} Lecture</p>
                 <button 
                     onClick={
                               (e) => { 
@@ -143,7 +143,7 @@ const SubSectionModal = ({
                 </button>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className='p-4'>
                 
                 <Upload 
                     name="lectureVideo"

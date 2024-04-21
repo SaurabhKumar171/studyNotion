@@ -11,34 +11,28 @@ import { categories } from '../../services/apis'
 import { useState } from 'react'
 import {IoIosArrowDropdownCircle} from "react-icons/io"
 
-const subLinks = [
-    {
-        title: "python",
-        link:"/catalog/python"
-    },
-    {
-        title: "web dev",
-        link:"/catalog/web-development"
-    },
-];
-
 
 const Navbar = () => {
     const {token} = useSelector( (state) => state.auth );
     const {user} = useSelector( (state) => state.profile );
     const {totalItems} = useSelector( (state) => state.cart )
+    const [loading, setLoading] = useState(false)
+
     const location = useLocation();
 
-    const [ssubLinks, setSsubLinks]  = useState([]);
+    const [subLinks, setSubLinks]  = useState([]);
 
     const fetchSublinks = async() => {
+        setLoading(true);
+
         try{
             const result = await apiConnector("GET", categories.CATEGORIES_API);
-            setSsubLinks(result.data.data);
+            setSubLinks(result.data.data);
         }
         catch(error) {
             console.log("Could not fetch the category list");
         }
+        setLoading(false);
     }
 
 
@@ -84,15 +78,30 @@ const Navbar = () => {
                                     translate-y-[-45%] h-6 w-6 rotate-45 rounded bg-richblack-5'>
                                     </div>
 
-                                    {
-                                        subLinks.length ? (
-                                                subLinks.map( (subLink, index) => (
-                                                    <Link to={`${subLink.link}`} key={index} className='capitalize hover:bg-richblack-25 p-2 text-lg rounded-md'>
-                                                        <p>{subLink.title}</p>
-                                                    </Link>
-                                                ) )
-                                        ) : (<div></div>)
-                                    }
+                        {loading ? (
+                          <p className="text-center">Loading...</p>
+                        ) : subLinks.length ? (
+                          <>
+                            {subLinks
+                              ?.filter(
+                                (subLink) => subLink?.courses?.length > 0
+                              )
+                              ?.map((subLink, i) => (
+                                <Link
+                                  to={`/catalog/${subLink.name
+                                    .split(" ")
+                                    .join("-")
+                                    .toLowerCase()}`}
+                                  className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50"
+                                  key={i}
+                                >
+                                  <p>{subLink.name}</p>
+                                </Link>
+                              ))}
+                          </>
+                        ) : (
+                          <p className="text-center">No Courses Found</p>
+                        )}
 
                                 </div>
 

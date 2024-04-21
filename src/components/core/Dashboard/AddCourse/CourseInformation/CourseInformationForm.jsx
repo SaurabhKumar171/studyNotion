@@ -252,6 +252,7 @@ export default function CourseInformationForm() {
         errors={errors}
         setValue={setValue}
         getValues={getValues}
+        editCourse={editCourse}
       />
       {/* Course Thumbnail Image */}
       <Upload

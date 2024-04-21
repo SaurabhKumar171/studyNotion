@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { RxCross2 } from "react-icons/rx";
 
-const ChipInput = ({name, label, placeholder, register, errors, setValue, getValues}) => {
+const ChipInput = ({name, label, placeholder, register, errors, setValue, getValues, editCourse}) => {
 
   const [tag, setTag] = useState("");
   const [tagsList, setTagsList] = useState([]);
@@ -12,6 +12,19 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
             required:true,
             validate: (value) => value.length > 0
         })
+    },[])
+
+    useEffect(()=>{
+      if(editCourse){
+        const currentValues = getValues();
+        const fetchedTags = currentValues?.courseTags;
+        console.log("fetchedTags tags...",fetchedTags);
+
+        // Parse each element in fetchedTags to remove square brackets
+        // const tagsWithoutBrackets = fetchedTags.map(tag => JSON.parse(tag));
+        // console.log("tagsWithoutBrackets tags...",tagsWithoutBrackets);
+        // setTagsList(tagsWithoutBrackets || []);
+      }
     },[])
 
     useEffect(()=> {
