@@ -4,6 +4,8 @@ const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const { default: mongoose } = require("mongoose");
+const {paymentSuccessEmail} = require("../mail/templates/paymentSuccessEmail");
+const crypto = require("crypto");
 
 // to initiate order
 exports.capturePayment = async (req, res) => {
@@ -139,15 +141,31 @@ const enrolledStudents = async (courses, userId, res) => {
     }
 }
 
-exports.sendPaymentSuccessfulEmail = async function(req,res){
+exports.sendPaymentSuccessfulEmail = async (req,res) => {
     const {orderId, paymentId, amount} = req.body;
 
-    const userId = req.usr.id;
+    const userId = req.user.id;
+
+    if(!orderId || !paymentId || !amount|| !userId){
+        return res.status(400).json({
+            success : false,
+            message : "All fields are required"
+        });
+    }
 
     try {
         
+        //find student
+        const enrolledStudent = await User.findById(userId);
+
+        await mailSender(
+            enrolledStudent.email,
+            `Payment received`,
+            paymentSuccessEmail(`${enrolledStudent.firstName}`, amount/100, orderId, paymentId)
+        )
     } catch (error) {
-        
+        console.log(error)
+        return res.status(500).json({success: false, message: "Could not send email"})
     }
 }
 
