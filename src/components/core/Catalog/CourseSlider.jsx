@@ -8,6 +8,7 @@ import { Autoplay,FreeMode,Navigation, Pagination}  from 'swiper'
 import Course_Card from './Course_Card'
 
 const CourseSlider = ({Courses}) => {
+
   return (
     <>
         {
@@ -24,9 +25,9 @@ const CourseSlider = ({Courses}) => {
                     disableOnInteraction: false,
                     }}
                     navigation={true}
-                    // breakpoints={{
-                    //     1024:{slidesPerView:3,}
-                    // }}
+                    breakpoints={{
+                        1024:{slidesPerView:2,}
+                    }}
                 >
                     {
                         Courses?.map((course, index)=> (

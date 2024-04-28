@@ -43,6 +43,13 @@ export const courseEndpoints = {
   CREATE_RATING_API: BASE_URL + "/course/createRating",
 }
 
+export const cartEndpoints = {
+  ADD_TO_CART_API :  BASE_URL + "/course/add-to-cart",
+  FETCH_CART_DETAILS_API :  BASE_URL + "/course/get-cart-courses",
+  REMOVE_COURSE_FROM_CART_API :  BASE_URL + "/course/removeFromCart",
+  RESET_CART_API :  BASE_URL + "/course/resetCart"
+}
+
 // RATINGS AND REVIEWS
 export const ratingsEndpoints = {
   REVIEWS_DETAILS_API: BASE_URL + "/course/getReviews",
