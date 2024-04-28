@@ -68,6 +68,10 @@ const userSchema = new mongoose.Schema(
 				ref: "courseProgress",
 			},
 		],
+		cart: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Cart",
+		}
 
 		// Add timestamps for when the document is created and last modified
 	},

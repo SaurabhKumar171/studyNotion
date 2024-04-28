@@ -44,6 +44,9 @@ const {
   getAllRating,
 } = require("../controllers/RatingAndReview")
 
+// cart controllers import
+const { addToCart, fetchCartDetails, removeFromCart, resetCart } = require("../controllers/Cart")
+
 // Importing Middlewares
 const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth")
 
@@ -93,5 +96,13 @@ router.post("/getCategoryPageDetails", categoryPageDetails)
 router.post("/createRating", auth, isStudent, createRating)
 router.get("/getAverageRating", getAverageRating)
 router.get("/getReviews", getAllRating)
+
+// ********************************************************************************************************
+//                                      Cart routes
+// ********************************************************************************************************
+router.post("/add-to-cart",auth, isStudent, addToCart)
+router.post("/get-cart-courses",auth, isStudent, fetchCartDetails)
+router.post("/removeFromCart",auth, isStudent, removeFromCart)
+router.post("/resetCart",auth, isStudent, resetCart)
 
 module.exports = router

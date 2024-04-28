@@ -32,7 +32,9 @@ const EnrolledCourses = () => {
     const getEnrolledCourses = async () => {
       try {
         const response = await getUserEnrolledCourses(token, dispatch);
+        console.log("resp enroll course...",response);
         setEnrolledCourses(response);
+        console.log("enrolledCourses enroll course...",enrolledCourses);
       } catch (error) {
          console.log("Unable to fetch Enrolled courses");
       }
@@ -60,7 +62,7 @@ const EnrolledCourses = () => {
       {
         !enrolledCourses ? 
         (<div>Loading ...</div>) :
-        !enrolledCourses.length ? 
+        !enrolledCourses?.length ? 
         (<p>You have not enrolled in any course yet</p>):
         (
           <div className='overflow-x-auto'>

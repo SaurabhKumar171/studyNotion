@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import RenderCartCourses from './RenderCartCourses';
 import RenderTotalAmount from './RenderTotalAmount';
+import { fetchAllCourses } from '../../../../services/operations/courseDetailsAPI';
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
 
     const location = useLocation();
-    const [totalItems, setTotalItems]= useState(1);
+    const [totalItems, setTotalItems]= useState(0);
+    const {token} = useSelector(state=> state.auth) 
+
 
     function convertUrlToBreadcrumb(url) {
         const parts = url.split('/');
@@ -24,6 +28,17 @@ const Cart = () => {
 
         return cleanedBreadcrumb;
     }
+
+
+    useEffect( ()=>{
+        const getCartCourses = async () => {
+            let response = await fetchAllCourses(token);
+            console.log("respo... hhhkk",response);
+            setTotalItems(response?.courses?.length);
+        }
+
+        getCartCourses();
+    },[])
 
   return (
     <div className="text-richblack-5">

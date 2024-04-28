@@ -5,23 +5,19 @@ import {GiNinjaStar} from "react-icons/gi"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../../../../slices/cartSlice';
+import { removeCourseFromCart } from '../../../../services/operations/courseDetailsAPI';
 
 const RenderCartCourses = () => {
 
-    // const {cart} = useSelector((state)=> state.cart)
-    const cart = [
-        {
-          _id: 1,
-          courseName: "The Complete Python Bootcamp From Zero to Hero in Python,The Complete Python Bootcamp From Zero to Hero in Python",
-          thumbnail: "https://api.dicebear.com/5.x/initials/svg?seed=b%20b",
-          category: { name: "Name" },
-          ratingAndReviews: [{}, {}, {}],
-          price: "19.99",
-        },];
-
+    const {cart} = useSelector((state)=> state.cart)
+    const {token} = useSelector(state=> state.auth) 
     const dispatch = useDispatch();
 
-    console.log("cart",cart)
+    const handleRemoveCart = async (course) => {
+        dispatch(removeFromCart(course._id));
+        removeCourseFromCart(course._id, token);
+    }
+
   return (
     <div className='flex flex-col gap-4 w-[75%]'>
         {
@@ -55,7 +51,7 @@ const RenderCartCourses = () => {
                     <div className=''>
                         <button
                             className='bg-richblack-700 text-pink-200 text-md rounded-md flex gap-1 justify-center items-center p-2'
-                            onClickCapture={()=> dispatch(removeFromCart(course._id))}>
+                            onClickCapture={()=> handleRemoveCart(course)}>
                             <RiDeleteBin6Line />
                             <span>Remove</span>
                         </button>

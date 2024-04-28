@@ -1,23 +1,38 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import IconBtn from "../../../common/IconBtn"
+import { buyCourse } from "../../../../services/operations/studentFeaturesApi"
+import { resetCartCourses } from '../../../../services/operations/courseDetailsAPI'
 
 const RenderTotalAmount = () => {
 
     const {total, cart} = useSelector((state)=> state.cart);
+    const { token } = useSelector((state)=> state.auth);
+    const { user } = useSelector((state)=> state.profile);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [totalAmount, setTotalAmount] = useState(0);
 
     const handleBuyCourses = () => {
         const courses = cart.map((course)=> course._id);
-        console.log("Bought these courses",courses);
-
-        //TODO : API integrate -> payment gateway
+        buyCourse(token, courses, user, navigate, dispatch);
+        resetCartCourses(token);
     }
+
+    useEffect(()=>{
+      let amntSum = 0;
+      cart.forEach((course) => {
+        amntSum += course.price;
+      });
+      setTotalAmount(amntSum);
+    },[cart])
 
   return (
     <div className='bg-richblack-700 p-4 rounded-md w-[22%]'>
         <p className='text-richblack-200'>Total:</p>
         {/* <p className='font-inter font-semibold text-2xl text-yellow-50'>Rs. {total}</p> */}
-        <p className='font-inter font-semibold text-2xl text-yellow-50'>Rs. 4500</p>
+        <p className='font-inter font-semibold text-2xl text-yellow-50'>{`Rs. ${totalAmount}`}</p>
 
         <p className='text-richblack-200 line-through'>Rs. 3500</p>
 
