@@ -47,7 +47,7 @@ const Navbar = () => {
     }
 
   return (
-    <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700'>
+    <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 bg-richblack-800'>
       <div className='flex w-11/12 max-w-maxContent items-center justify-between'>
         {/* Image */}
       <Link to="/">
@@ -66,16 +66,9 @@ const Navbar = () => {
                                 <p>{link.title}</p>
                                 <IoIosArrowDropdownCircle/>
 
-                                <div className='invisible absolute left-[50%]
-                                translate-x-[-50%] translate-y-[80%]
-                                -top-8
-                                flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900
-                                opacity-0 transition-all duration-200 group-hover:visible
-                                group-hover:opacity-100 lg:w-[300px] z-[1]'>
+                                <div className='invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]'>
 
-                                    <div className='absolute left-[50%] top-0
-                                    translate-x-[80%]
-                                    translate-y-[-45%] h-6 w-6 rotate-45 rounded bg-richblack-5'>
+                                    <div className='absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5'>
                                     </div>
 
                         {loading ? (
@@ -130,7 +123,7 @@ const Navbar = () => {
 
             {
                 user && user?.accountType !== "Instructor" && (
-                    <Link to="/dashboard/cart" className='relative'>
+                    <Link to="/dashboard/cart" className='relative text-richblack-25'>
                         <AiOutlineShoppingCart />
                         {
                             totalItems > 0 && (

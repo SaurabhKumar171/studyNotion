@@ -6,9 +6,12 @@ import { getCatalogPageData } from '../services/operations/pageAndComponentData'
 import { apiConnector } from '../services/apiconnector';
 import Course_Card from '../components/core/Catalog/Course_Card';
 import CourseSlider from '../components/core/Catalog/CourseSlider';
+import { useSelector } from 'react-redux';
+import Error from "./Error";
 
 const Catalog = () => {
 
+    const { loading } = useSelector((state) => state.profile)
     const {catalogName} = useParams();
     const [catalogPageData, setCatalogPageData] = useState(null); 
     const [categoryId, setCategoryId] = useState("");
@@ -40,23 +43,37 @@ const Catalog = () => {
         
     },[categoryId]);
 
+    if (loading || !catalogPageData) {
+        return (
+          <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+            <div className="spinner"></div>
+          </div>
+        )
+      }
+
+    if (!loading && !catalogPageData.success) {
+      return <Error />
+    }
+
   return (
-    <div className='text-white'>
-        
-        <div>
-            <p>{`Home / Catalog / `}
-                <span>{catalogPageData?.data?.selectedCategory?.name}</span>
-            </p>
+    <div className='text-white bg-richblack-900'>
+    
+        <div className='bg-richblack-800'>
+            <div className='flex flex-col gap-2 w-9/12 mx-auto '>
+                <p className='text-richblack-300 mt-6'>{`Home / Catalog / `}
+                    <span className='text-yellow-50'>{catalogPageData?.data?.selectedCategory?.name}</span>
+                </p>
 
-            <p>{catalogPageData?.data?.selectedCategory?.name}</p>
+                <p className='text-3xl font-small'>{catalogPageData?.data?.selectedCategory?.name}</p>
 
-            <p>{catalogPageData?.data?.selectedCategory?.description}</p>
+                <p className="text-richblack-200 mb-6">{catalogPageData?.data?.selectedCategory?.description}</p>
+            </div>
         </div>
 
-        <div>
+        <div className=' w-10/12 mx-auto mt-6'>
             {/* section 1 */}
             <div>
-                <div>Courses to get you started</div>
+                <h1 className='text-3xl font-small'>Courses to get you started</h1>
                 <div className='flex gap-x-3'>
                     <p>Most Popular</p>
                     <p>New</p>
