@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserEnrolledCourses } from '../../../services/operations/profileApi';
 import ProgressBar from "@ramonak/react-progress-bar";
@@ -11,6 +11,7 @@ const EnrolledCourses = () => {
     const {token} = useSelector((state)=> state.auth);
     const [enrolledCourses, setEnrolledCourses] = useState(null);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function convertUrlToBreadcrumb(url) {
         const parts = url.split('/');
@@ -80,7 +81,12 @@ const EnrolledCourses = () => {
 
                   <div key={index}
                       className="grid grid-cols-4 gap-4 border-b-richblack-700 p-4"
-                      style={{gridTemplateColumns: '40% 1fr 1fr 1fr'}}>
+                      style={{gridTemplateColumns: '40% 1fr 1fr 1fr'}}
+                      onClick={ ()=> {
+                        navigate(
+                          `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?.id}`
+                        )
+                      }}>
                     <div className="flex items-center rounded-md gap-2">
                       <img src={course.thumbnail} alt={`course-${course.thumbnail}`} width={50} height={50} className="rounded"/>
                       <div>
@@ -103,7 +109,7 @@ const EnrolledCourses = () => {
                     </div>
                     <div className='m-auto'>                   
                         <HiOutlineDotsVertical className='text-lg'/>
-                      </div>
+                    </div>
                   </div>
                 ))
               }
