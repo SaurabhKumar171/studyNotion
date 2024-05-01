@@ -41,7 +41,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
   return (
     <>
 
-        <div>
+        <div className='text-white'>
             {/* for buttons and headings */}
             <div>
                 {/* for buttons */}
