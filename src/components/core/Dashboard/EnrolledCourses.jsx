@@ -33,9 +33,7 @@ const EnrolledCourses = () => {
     const getEnrolledCourses = async () => {
       try {
         const response = await getUserEnrolledCourses(token, dispatch);
-        console.log("resp enroll course...",response);
         setEnrolledCourses(response);
-        console.log("enrolledCourses enroll course...",enrolledCourses);
       } catch (error) {
          console.log("Unable to fetch Enrolled courses");
       }
@@ -84,7 +82,7 @@ const EnrolledCourses = () => {
                       style={{gridTemplateColumns: '40% 1fr 1fr 1fr'}}
                       onClick={ ()=> {
                         navigate(
-                          `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?.id}`
+                          `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
                         )
                       }}>
                     <div className="flex items-center rounded-md gap-2">

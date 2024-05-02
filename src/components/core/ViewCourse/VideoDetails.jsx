@@ -36,6 +36,7 @@ const VideoDetails = () => {
           const filteredVideoData = filteredData?.[0]?.subSection.filter(
             (data) => data._id === subSectionId
           )
+
           setVideoData(filteredVideoData[0])
         }
     }
@@ -134,25 +135,24 @@ const VideoDetails = () => {
     }
   }
 
-  const handleLectureCompletion = async() => {
-      // dummy code , replace it next time
+  // const handleLectureCompletion = async() => {
+  //     // dummy code , replace it next time
 
-      setLoading(true);
+  //     setLoading(true);
 
-      // const res = await markLectureAsCompleted(
-      //   {
-      //     courseId: courseId, 
-      //     subSectionId : subSectionId,
-      //   },
-      //   token
-      // );
+  //     const res = await markLectureAsCompleted(
+  //       {
+  //         courseId: courseId, 
+  //         subSectionId : subSectionId,
+  //       },
+  //       token
+  //     );
       
-      // state update
-      // if(res){
-      //   dispatch(updateCompletedLectures(subSectionId));
-      // }
-      // setLoading(false);
-  }
+  //     if(res){
+  //       dispatch(updateCompletedLectures(subSectionId));
+  //     }
+  //     setLoading(false);
+  // }
 
   return (
     <div className='text-white'>
@@ -164,7 +164,7 @@ const VideoDetails = () => {
                 (
                   <Player
                       ref = {playerRef}
-                      aspectRation="16:9"
+                      aspectRatio = {"16:9"}
                       playsInline
                       onEnded = {() => setVideoEnded(true)}
                       src={videoData?.videoUrl}
@@ -178,7 +178,7 @@ const VideoDetails = () => {
                                 !completedLectures.includes(subSectionId) && (
                                   <IconBtn
                                       disabled = {loading}
-                                      onclick={()=> handleLectureCompletion()}
+                                      // onclick={()=> handleLectureCompletion()}
                                       text = {!loading ? "Mark as Completed":"Loading ..."}
                                   />
                                 )
