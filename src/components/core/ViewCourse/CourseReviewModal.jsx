@@ -45,7 +45,7 @@ const CourseReviewModal = ({setReviewModal}) => {
       <div>
           {/* Modal header */}
           <div>
-             <p>Add review</p>
+             <p className='text-white'>Add review</p>
              <button
                 onClick={setReviewModal(false)}
              >
