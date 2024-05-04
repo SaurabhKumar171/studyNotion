@@ -17,25 +17,23 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
         completedLectures
     } = useSelector(state => state.viewCourse);
      
-    useEffect(()=>{
-        ;(()=>{
-            if(!courseSectionData?.length)
+    useEffect(()=> {
+        const setActiveFlags = () => {
+            if(!courseSectionData.length)
                 return;
-
             const currentSectionIndex = courseSectionData.findIndex(
-                (data) => data._id ===  sectionId
+                (data) => data._id === sectionId
             )
-
             const currentSubSectionIndex = courseSectionData?.[currentSectionIndex]?.subSection.findIndex(
                 (data) => data._id === subSectionId
             )
-
-            const activeSubSectionId = courseSectionData?.[currentSectionIndex]?.subSection?.[currentSubSectionIndex]?._id;
-            // set current section here
+            const activeSubSectionId = courseSectionData[currentSectionIndex]?.subSection?.[currentSubSectionIndex]?._id;
+            //set current section here
             setActiveStatus(courseSectionData?.[currentSectionIndex]?._id);
-            // set current sub section here
-            setVideoBarActive(activeSubSectionId)
-        })()
+            //set current sub-section here
+            setVideoBarActive(activeSubSectionId);
+        }
+        setActiveFlags();
     },[courseSectionData, courseEntireData, location.pathname])
 
   return (
@@ -55,6 +53,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
                     <div>
                         <IconBtn 
                             text="Add review"
+                            customClasses={"bg-yellow-50"}
                             onclick={() => setReviewModal(true)}
                         />
                     </div>
@@ -74,7 +73,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
                 {
                     courseSectionData.map((section, index) => (
                         <div
-                            onClick={() => setActiveStatus(section?._id)}
+                            onClick={() => {setActiveStatus(section?._id)}}
                             key={index}
                         >
                             
@@ -89,25 +88,34 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
                             {/* sub sections */}
                             <div>
                                 {
-                                    activeStatus === section._id && (
+                                    activeStatus === section?._id && (
                                         <div>
                                             {
-                                               section.subSection.map((topic, index) => (
-                                                 <div
-                                                    className={`flex gap-5 p-5 ${videoBarActive === topic?._id ? "bg-yellow-200 text-richblack-900":"bg-richblack-900 text-white"}`}
+                                                section.subSection.map((topic, index) => (
+                                                    <div
+                                                    className={`flex gap-5 p-5 ${
+                                                        videoBarActive === topic._id
+                                                        ? "bg-yellow-200 text-richblack-900"
+                                                        : "bg-richblack-900 text-white"
+                                                    }`}
                                                     key={index}
-                                                    onClick={()=>{
-                                                         navigate(`/view-course/${courseEntireData?._id}/section/${section?._id}/sub-section/${topic.courseContent?._id}`)
+                                                    onClick={() => {
+                                                        navigate(
+                                                            `/view-course/${courseEntireData?._id}/section/${section?._id}/sub-section/${topic?._id}`
+                                                        )
+                                                        setVideoBarActive(topic?._id);
                                                     }}
-                                                 >
-                                                    <input type="checkbox" checked= {completedLectures.includes(topic?._id)}
-                                                    onChange={()=>{}}/>
-
-                                                    <span>
-                                                        {topic?.title}
-                                                    </span>
-                                                 </div>
-                                               ))
+                                                    >
+                                                        <input
+                                                        type='checkbox'
+                                                        checked= {completedLectures.includes(topic?._id)}
+                                                        onChange={() => {}}
+                                                        />
+                                                        <span>
+                                                            {topic.title}
+                                                        </span>
+                                                    </div>
+                                                ))
                                             }
                                         </div>
                                     )

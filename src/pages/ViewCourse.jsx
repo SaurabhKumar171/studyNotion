@@ -47,6 +47,7 @@ const ViewCourse = () => {
             reviewModal &&
             (<CourseReviewModal setReviewModal= {setReviewModal}/>)
         }
+        
     </>
   )
 }

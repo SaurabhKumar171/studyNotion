@@ -482,3 +482,27 @@ export const resetCartCourses = async (token) => {
   toast.dismiss(toastId)
   return result
 }
+
+export const markLectureAsCompleted = async (data, token) => {
+  const toastId = toast.loading("Loading...")
+  let result = null
+  try {
+    const response = await apiConnector("POST", LECTURE_COMPLETION_API, data,
+    {
+      Authorization: `Bearer ${token}`,
+    });
+
+    if (!response?.data?.message) {
+      throw new Error(response.data.error)
+    }
+
+    toast.success("Lecture Completed")
+    result = true;
+  } catch (error) {
+    console.log("MARK_LECTURE_AS_COMPLETED API ERROR............", error)
+    toast.error(error.message)
+    result = false
+  }
+  toast.dismiss(toastId)
+  return result
+}
