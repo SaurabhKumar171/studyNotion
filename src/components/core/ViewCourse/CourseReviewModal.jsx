@@ -47,7 +47,7 @@ const CourseReviewModal = ({setReviewModal}) => {
           <div>
              <p className='text-white'>Add review</p>
              <button
-                onClick={setReviewModal(false)}
+                onClick={() => setReviewModal(false)}
              >
               close
              </button>

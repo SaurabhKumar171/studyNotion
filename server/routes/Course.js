@@ -44,6 +44,9 @@ const {
   getAllRating,
 } = require("../controllers/RatingAndReview")
 
+// Importing course progress
+const { updateCourseProgress } = require("../controllers/CourseProgress")
+
 // cart controllers import
 const { addToCart, fetchCartDetails, removeFromCart, resetCart } = require("../controllers/Cart")
 
@@ -80,7 +83,8 @@ router.get("/getInstructorCourses", auth, isInstructor,getInstructorCourses)
 router.post("/editCourse", auth, isInstructor, editCourse)
 // delete Course
 router.delete("/deleteCourse", auth, isInstructor, deleteCourse)
-
+// course progress
+router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress)
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)
 // ********************************************************************************************************
