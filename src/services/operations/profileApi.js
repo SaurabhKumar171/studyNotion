@@ -6,7 +6,8 @@ import { logout } from "./authAPI"
 
 const {
         GET_USER_DETAILS_API,
-        GET_USER_ENROLLED_COURSES_API
+        GET_USER_ENROLLED_COURSES_API,
+        GET_INSTRUCTOR_DATA_API
       } = profileEndpoints;
 
 export const getUserDetails = ({token, navigate}) => {
@@ -67,3 +68,23 @@ export async function getUserEnrolledCourses(token, dispatch){
         return result
 }
 
+export async function getInstructorData(token){
+  const toastId = toast.loading("Loading...")
+  let result = [];
+  try {
+    const response = await apiConnector("GET", GET_INSTRUCTOR_DATA_API, null, 
+      {
+        Authorization : `Bearer ${token}`
+      }
+    )
+
+    console.log("GET_INSTRUCTOR_DATA_API Response", response);
+    result = response?.data?.courses;
+
+  }catch(error) {
+      console.log("GET_INSTRUCTOR_DATA_API ERROR............", error)
+      toast.error("Could Not Get Enrolled Courses")
+  }
+  toast.dismiss(toastId)
+  return result
+}
