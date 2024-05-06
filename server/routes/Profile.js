@@ -1,14 +1,15 @@
 const express = require("express")
 const router = express.Router()
-const { auth } = require("../middlewares/auth")
+const { auth, isInstructor } = require("../middlewares/auth")
 const {
   deleteAccount,
   updateProfile,
   getAllUserDetails,
   updateDisplayPicture,
   getEnrolledCourses,
-} = require("../controllers/Profile")
+} = require("../controllers/Profile");
 
+const { instructorDashboard } = require("../controllers/Course")
 // ********************************************************************************************************
 //                                      Profile routes
 // ********************************************************************************************************
@@ -19,5 +20,6 @@ router.get("/getUserDetails", auth, getAllUserDetails)
 // Get Enrolled Courses
 router.get("/getEnrolledCourses", auth, getEnrolledCourses)
 router.put("/updateDisplayPicture", auth, updateDisplayPicture)
+router.get("/instructorDashboard", auth , isInstructor, instructorDashboard)
 
-module.exports = router
+module.exports = router 
