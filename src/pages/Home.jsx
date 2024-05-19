@@ -171,36 +171,33 @@ const Home = () => {
 
             </div>
 
-            <div className='mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7'>
-
-                <div className='flex flex-row gap-5 mb-10 mt-[95px]'>
-                    <div className='text-4xl font-semibold w-[45%]'>
-                        Get the Skills you need for a
-                        <HighlightText text={"Job that is in demand"} />
+            <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 ">
+                {/* Job that is in Demand - Section 1 */}
+                <div className="mb-10 mt-16 flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0">
+                    <div className="text-4xl font-semibold lg:w-[45%] ">
+                        Get the skills you need for a{" "}
+                        <HighlightText text={"job that is in demand."} />
                     </div>
-
-                    <div className='flex flex-col gap-10 w-[40%] items-start'>
-                    <div className='text-[16px]'>
-                    The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
-                    </div>
-                    <CTAButton active={true} linkto={"/signup"} customClasses={"capitalize"}>
-                        <div>
-                            Learn more
+                    <div className="flex flex-col items-start gap-10 lg:w-[40%]">
+                        <div className="text-[16px]">
+                            The modern StudyNotion is the dictates its own terms. Today, to
+                            be a competitive specialist requires more than professional
+                            skills.
                         </div>
-                    </CTAButton>
+                        <CTAButton active={true} linkto={"/signup"} customClasses={"px-4 xs:px-6"}>
+                            <div className="">Learn More</div>
+                        </CTAButton>
                     </div>
-
                 </div>
-                
-                
 
+                {/* Timeline Section - Section 2 */}
                 <TimelineSection />
 
+                {/* Learning Language Section - Section 3 */}
                 <LearningLanguageSection />
-
             </div>
 
-            
+                    
 
       </div>
 
@@ -210,9 +207,10 @@ const Home = () => {
 
             <InstructorSection />
 
-            <h2 className='text-center text-4xl font-semobold mt-10'>review from Other Learners</h2>
-            {/* Review Slider here */}
-            <ReviewSlider/>
+            <h1 className="text-center text-4xl font-semibold mt-8">
+                Reviews from other learners
+            </h1>
+            <ReviewSlider />
             
       </div>
 
