@@ -26,7 +26,7 @@ const ExploreMore = () => {
   };
 
   return (
-    <div className="relative mb-52 w-full">
+    <div className="relative mb-[56rem] min-[856px]:mb-[35rem] lg:mb-12 w-full">
       {/* Explore more section */}
       <div>
         <div className="text-4xl font-semibold xs:text-center my-10">
