@@ -472,7 +472,7 @@ export const resetCartCourses = async (token) => {
     });
 
     if (!response?.data?.success) {
-      throw new Error("Could not remove course to cart")
+      throw new Error("Could not remove course from cart")
     }
     result = response?.data?.cart
   } catch (error) {
