@@ -48,11 +48,11 @@ export const sidebarLinks = [
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscHistory",
   },
-  {
-    id: 8,
-    name: "Courses",
-    path: "/dashboard/courses",
-    type: ACCOUNT_TYPE.STUDENT,
-    icon: "VscMortarBoard",
-  },
+  // {
+  //   id: 8,
+  //   name: "Courses",
+  //   path: "/dashboard/courses",
+  //   type: ACCOUNT_TYPE.STUDENT,
+  //   icon: "VscMortarBoard",
+  // },
 ];

@@ -1,6 +1,7 @@
 const {instance} = require("../config/razorpay");
 const Course = require("../models/Course");
 const User = require("../models/User");
+const Purchase = require("../models/Purchase");
 const mailSender = require("../utils/mailSender");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const { default: mongoose } = require("mongoose");
@@ -133,16 +134,22 @@ const enrolledStudents = async (courses, userId, res) => {
                         courseProgress: courseProgress._id,
                     }
                 },{new : true});
+            
+            // Add to Purchase history
+            await Purchase.create({
+                    user: userId,
+                    course: courseId,
+                    price: enrolledCourse.price, // Assuming the course price is stored in the course document
+            });
 
+            // send mail
+            const emailResponse = await mailSender(
+                enrolledStudent.email,
+                `Successfully enrolled into ${enrolledCourse.courseName}`,
+                courseEnrollmentEmail(enrolledCourse.courseName, `${enrolledStudent.firstName}`)
+            );
 
-                // send mail
-                const emailResponse = await mailSender(
-                    enrolledStudent.email,
-                    `Successfully enrolled into ${enrolledCourse.courseName}`,
-                    courseEnrollmentEmail(enrolledCourse.courseName, `${enrolledStudent.firstName}`)
-                );
-
-                console.log("Email sent successfully", emailResponse.response);
+            console.log("Email sent successfully", emailResponse.response);
         } catch (error) {
             console.log(error);
             return res.status(500).json({success: false, message: error.message})

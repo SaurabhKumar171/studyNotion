@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		// Define the role field with type String and enum values of "Admin", "Student", or "Visitor"
+		// Define the role field with type String and enum values of "Admin", "Student", or "Instructor"
 		accountType: {
 			type: String,
 			enum: ["Admin", "Student", "Instructor"],
@@ -71,8 +71,13 @@ const userSchema = new mongoose.Schema(
 		cart: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Cart",
-		}
-
+		},
+		purchases: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Purchase",
+			},
+		],
 		// Add timestamps for when the document is created and last modified
 	},
 	{ timestamps: true }

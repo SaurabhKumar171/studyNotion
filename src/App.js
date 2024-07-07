@@ -27,6 +27,7 @@ import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import PurchaseHistory from "./components/core/Dashboard/PurchaseHistory";
 
 function App() {
 
@@ -105,6 +106,7 @@ function App() {
             <>
               <Route path="dashboard/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
               <Route path="dashboard/enrolled-courses" element={<PrivateRoute><EnrolledCourses /></PrivateRoute>} />
+              <Route path="dashboard/purchase-history" element={<PrivateRoute><PurchaseHistory /></PrivateRoute>} />
             </>
           )
         }

@@ -20,6 +20,7 @@ const {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
+  PURCHASE_HISTORY_API,
 } = courseEndpoints
 
 const {
@@ -502,6 +503,34 @@ export const markLectureAsCompleted = async (data, token) => {
     console.log("MARK_LECTURE_AS_COMPLETED API ERROR............", error)
     toast.error(error.message)
     result = false
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+export const getPurchaseHistory = async (token) => {
+  const toastId = toast.loading("Loading...");
+  let result = null;
+  try {
+    const response = await apiConnector(
+      "GET",
+      PURCHASE_HISTORY_API,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    )
+
+    console.log("INSTRUCTOR COURSES API RESPONSE............", response);
+    if (!response?.data?.success) { 
+      throw new Error(response.data.error) 
+    }
+
+    result = response?.data?.detailedPurchasedCourses;
+
+  } catch (error) {
+    console.log("GET_PURCHASE_HISTORY_API API ERROR............", error)
+    toast.error(error.message)
   }
   toast.dismiss(toastId)
   return result

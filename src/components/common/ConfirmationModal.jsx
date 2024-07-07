@@ -22,6 +22,7 @@ const ConfirmationModal = ({modalData, closeModal}) => {
           <IconBtn
             onclick={modalData?.btn1Handler}
             text={modalData?.btn1Text}
+            customClasses={"bg-yellow-50"}
           />
           <button
             className="cursor-pointer rounded-md bg-richblack-200 py-[8px] px-[20px] font-semibold text-richblack-900"

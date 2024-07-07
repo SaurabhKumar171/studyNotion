@@ -12,7 +12,8 @@ const {
   editCourse,
   getInstructorCourses,
   deleteCourse,
-  getFullCourseDetails
+  getFullCourseDetails,
+  getPurchaseHistory,
 } = require("../controllers/Course")
 
 
@@ -85,6 +86,9 @@ router.post("/editCourse", auth, isInstructor, editCourse)
 router.delete("/deleteCourse", auth, isInstructor, deleteCourse)
 // course progress
 router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress)
+// get course Purchase history
+router.get("/getPurchaseHistory", auth, isStudent, getPurchaseHistory)
+
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)
 // ********************************************************************************************************

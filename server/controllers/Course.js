@@ -1,9 +1,10 @@
 const Course = require("../models/Course");
 const Category = require("../models/Category");
-const Section = require("../models/Section")
-const SubSection = require("../models/SubSection")
-const User = require("../models/User")
+const Section = require("../models/Section");
+const SubSection = require("../models/SubSection");
+const User = require("../models/User");
 const CourseProgress = require("../models/CourseProgress");
+const Purchase = require("../models/Purchase");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const { convertSecondsToDuration } = require("../utils/secToDuration");
 // Function to create a new course
@@ -443,6 +444,62 @@ exports.instructorDashboard = async (req, res) => {
 		})
 
 		res.status(200).json({success: true, courses :courseData});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({success: false, message :"Internal server error"});
+	}
+}
+
+exports.getPurchaseHistory = async (req, res) => {
+	try {
+		const userId = req.user.id;
+
+		if(!userId){
+			return res
+					.status(400)
+					.json({
+							success: false, 
+							message: "Invalid user id"
+						});
+		}
+
+		const user = await User.findById(userId);
+
+		if(!user){
+			return res
+			.status(400)
+			.json({
+					success: false, 
+					message: "user does not exist"
+				});
+		}
+
+		const purchasedCourses = await Purchase.find({ user: userId });
+
+
+        if (!purchasedCourses || purchasedCourses.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "No courses purchased yet!"
+            });
+        }
+
+        const courseDetailsPromises = purchasedCourses.map(async (purchase) => {
+            const course = await Course.findById(purchase.course);
+            return {
+                ...purchase._doc,
+                courseDetails: course
+            };
+        });
+
+        const detailedPurchasedCourses = await Promise.all(courseDetailsPromises);
+
+		return res.status(200).json({
+			success: true,
+			detailedPurchasedCourses,
+			message: "Purchased fetched successfully",
+		  })
+
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({success: false, message :"Internal server error"});

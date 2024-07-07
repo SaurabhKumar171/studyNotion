@@ -21,16 +21,6 @@ const Sidebar = ({sidebar, isSmallScreen, closeSidebar}) => {
 
     const ref = useRef(null);
     useOnClickOutside(ref, isSmallScreen ? closeSidebar: ()=>{return});
-    
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         setIsSmallScreen(window.innerWidth <= 1024);
-    //     };
-
-    //     window.addEventListener('resize', handleResize);
-
-    //     return () => window.removeEventListener('resize', handleResize);
-    // }, []);
 
     const close = () => {
         closeSidebar();
