@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
+import {AiOutlineShoppingCart } from "react-icons/ai"
 import { BsChevronDown } from "react-icons/bs"
 import { useSelector } from "react-redux"
 import { Link, matchPath, useLocation } from "react-router-dom"
@@ -10,6 +10,25 @@ import { apiConnector } from '../../services/apiconnector'
 import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from "../core/Auth/ProfileDropDown"
+import MobileSidebar from "./MobileSidebar"
+// const subLinks = [
+//   {
+//     title: "Python",
+//     link: "/catalog/python",
+//   },
+//   {
+//     title: "javascript",
+//     link: "/catalog/javascript",
+//   },
+//   {
+//     title: "web-development",
+//     link: "/catalog/web-development",
+//   },
+//   {
+//     title: "Android Development",
+//     link: "/catalog/Android Development",
+//   },
+// ];
 
 function Navbar() {
   const { token } = useSelector((state) => state.auth)
@@ -19,6 +38,9 @@ function Navbar() {
 
   const [subLinks, setSubLinks] = useState([])
   const [loading, setLoading] = useState(false)
+
+  const [toggled, setToggled] = useState(false);
+
 
   useEffect(() => {
     ;(async () => {
@@ -140,10 +162,12 @@ function Navbar() {
           )}
           {token !== null && <ProfileDropdown />}
         </div>
-        <button className="mr-4 md:hidden">
+        {/* <button className="mr-4 md:hidden">
           <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
-        </button>
+        </button> */}
       </div>
+
+      <MobileSidebar toggled = {toggled} setToggled={setToggled} subLinks={subLinks} token={token}/>
     </div>
   )
 }
