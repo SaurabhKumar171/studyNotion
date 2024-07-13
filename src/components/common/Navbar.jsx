@@ -10,7 +10,6 @@ import { apiConnector } from '../../services/apiconnector'
 import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from "../core/Auth/ProfileDropDown"
-import { slide as Menu } from 'react-burger-menu'
 
 function Navbar() {
   const { token } = useSelector((state) => state.auth)
@@ -144,13 +143,6 @@ function Navbar() {
         <button className="mr-4 md:hidden">
           <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
         </button>
-
-        {/* <div className="md:hidden" id="outer-container">
-          <Menu disableOverlayClick customBurgerIcon={ <AiOutlineMenu fontSize={24} fill="#AFB2BF"/> } right className={"bg-yellow-50"} outerContainerId={ "outer-container" } width={ '20%' } >
-            <a href="/home" className="menu-item">Home</a>
-            <a href="/about" className="menu-item">Abput</a>
-          </Menu>
-        </div> */}
       </div>
     </div>
   )
