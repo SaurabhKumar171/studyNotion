@@ -53,7 +53,7 @@ const Instructor = () => {
             <div className="spinner"></div>
         ) : courses.length > 0 ? (
             <div>
-                <div className="my-4 flex h-[450px] space-x-4">
+                <div className="my-4 flex h-[450px] space-x-4 overflow-x-auto">
                     {/* Render chart / graph */}
                     {totalAmount > 0 || totalStudents > 0 ? (
                         <InstructorChart courses={instructorData} />

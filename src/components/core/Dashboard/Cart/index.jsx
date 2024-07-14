@@ -33,6 +33,7 @@ const Cart = () => {
     useEffect( ()=>{
         const getCartCourses = async () => {
             let response = await fetchAllCourses(token);
+            // console.log("The cart courses ==>",response?.courses);
             setTotalItems(response?.courses?.length);
         }
 
@@ -40,33 +41,6 @@ const Cart = () => {
     },[])
 
   return (
-    // <div className="text-richblack-5">
-    //     <div className='rounded-lg ml-7 mt-4'>
-    //       <div>
-    //           <span className="text-richblack-300 capitalize text-sm">{`Home   /   Dashboard   /   `}</span>
-    //           <span className='text-yellow-50'>{convertUrlToBreadcrumb(location.pathname)}</span>
-    //       </div>
-    //       <h1 className='text-richblack-5 font-inter text-2xl mt-3 capitalize'>
-    //           your cart
-    //       </h1>
-    //     </div>
-
-    //     <div className='w-11/12 mt-6'>
-    //         <div className='border-b border-richblack-700 ml-7 mb-4 py-2 text-richblack-400 font-semibold'>
-    //             {totalItems} Courses in Cart
-    //         </div>
-    //         {
-    //             totalItems>0 ?
-    //             (
-    //             <div className='flex justify-between items-start flex-wrap'>
-    //                <RenderCartCourses/>
-    //                <RenderTotalAmount/>
-    //             </div>):
-    //             (<p>Your card is empty!</p>)
-    //         }
-    //     </div>
-    // </div>
-
     <div className="text-richblack-5">
         <div className='rounded-lg ml-7 mt-4'>
           <div>
@@ -78,16 +52,17 @@ const Cart = () => {
                 {totalItems} Courses in Cart
             </p>
         </div>
-            {totalItems>0 ? (
-            <div className="mt-8 flex flex-col-reverse items-start gap-x-10 gap-y-6 lg:flex-row">
-                <RenderCartCourses />
-                <RenderTotalAmount />
-            </div>
+        {
+            totalItems > 0 ? (
+                <div className="mt-8 flex flex-col items-start gap-x-10 gap-y-6 lg:flex-row">
+                    <RenderCartCourses/>
+                    <RenderTotalAmount />
+                </div>
             ) : (
-            <p className="mt-14 text-center text-3xl text-richblack-100">
-                Your cart is empty
-            </p>
-            )}
+                <p className="mt-14 text-center text-3xl text-richblack-100">
+                    Your cart is empty
+                </p>
+        )}
     </div>
   )
 }

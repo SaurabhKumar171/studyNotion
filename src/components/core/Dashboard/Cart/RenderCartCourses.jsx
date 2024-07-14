@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ReactStars from "react-rating-stars-component";
 import {GiNinjaStar} from "react-icons/gi"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../../../../slices/cartSlice';
+import { removeFromCart, resetCart } from '../../../../slices/cartSlice';
 import { removeCourseFromCart } from '../../../../services/operations/courseDetailsAPI';
 
-const RenderCartCourses = () => {
+const RenderCartCourses = ({totalItems}) => {
 
     const {cart} = useSelector((state)=> state.cart)
     const {token} = useSelector(state=> state.auth) 
@@ -19,11 +19,11 @@ const RenderCartCourses = () => {
     }
 
   return (
-    <div className='flex flex-col gap-4 w-[75%]'>
+    <div className='flex flex-col gap-4 w-full lg:w-[75%]'>
         {
             cart.map((course , index)=> (
                 <div key={index}
-                     className='border-b border-b-richblack-700 pl-7 flex items-start gap-4 py-3'>
+                     className='border-b border-b-richblack-700 pl-7 flex items-start justify-between gap-4 py-3 flex-col min-[375px]:flex-row'>
                     <img src={course?.thumbnail} alt={`${course.courseName}-${index}`} width={100} className='rounded-md'/>
 
                     <div className='flex'>

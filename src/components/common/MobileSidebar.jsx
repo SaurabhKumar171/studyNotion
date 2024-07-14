@@ -30,8 +30,14 @@ const MobileSidebar = ({toggled, setToggled, subLinks, token}) => {
                 {token !== null && 
                     <SubMenu 
                         icon={<CgProfile className='text-2xl'/>}
+                        backgroundColor="#161D29"
                     >
-                        <MenuItem className='hover:bg-yellow-600'>
+                        {/* <img
+                            src={user?.image}
+                            alt={`profile-${user?.firstName}`}
+                            className="aspect-square w-[30px] rounded-full object-cover"
+                        /> */}
+                        <MenuItem className=''>
                             <Link to="/dashboard/my-profile">
                                 <div className="flex w-full items-center gap-x-1 text-sm text-richblack-100">
                                     Dashboard
@@ -83,7 +89,7 @@ const MobileSidebar = ({toggled, setToggled, subLinks, token}) => {
                                                         .split(" ")
                                                         .join("-")
                                                         .toLowerCase()}`}
-                                                    className="rounded-lg bg-transparent"
+                                                    className="rounded-lg"
                                                 >
                                                     <p>{subLink.name}</p>
                                                 </Link>
@@ -94,7 +100,7 @@ const MobileSidebar = ({toggled, setToggled, subLinks, token}) => {
                                 )}
                             </SubMenu>
                         ) : (
-                            <MenuItem className='hover:bg-yellow-25' key={index}>
+                            <MenuItem key={index}>
                                 <Link to={link?.path}>
                                     <p>{link.title}</p>
                                 </Link>
@@ -105,7 +111,7 @@ const MobileSidebar = ({toggled, setToggled, subLinks, token}) => {
 
                 {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
                     <MenuItem>
-                        <Link to="/dashboard/cart" className="relative">
+                        <Link to="/dashboard/cart">
                             {/* <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
                                 {totalItems > 0 && (
                                 <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
