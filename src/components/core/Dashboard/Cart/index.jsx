@@ -10,7 +10,7 @@ const Cart = () => {
     const location = useLocation();
     const [totalItems, setTotalItems]= useState(0);
     const {token} = useSelector(state=> state.auth) 
-
+    const cart = useSelector(state => state.cart.cart);
 
     function convertUrlToBreadcrumb(url) {
         const parts = url.split('/');
@@ -38,7 +38,11 @@ const Cart = () => {
         }
 
         getCartCourses();
-    },[])
+    },[token])
+
+    useEffect(() => {
+        setTotalItems(cart.length);
+      }, [cart]);
 
   return (
     <div className="text-richblack-5">
@@ -55,7 +59,7 @@ const Cart = () => {
         {
             totalItems > 0 ? (
                 <div className="mt-8 flex flex-col items-start gap-x-10 gap-y-6 lg:flex-row">
-                    <RenderCartCourses/>
+                    <RenderCartCourses setTotalItems={setTotalItems}/>
                     <RenderTotalAmount />
                 </div>
             ) : (

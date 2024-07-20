@@ -71,7 +71,20 @@ exports.createCourse = async (req, res) => {
 			 thumbnail,
 			process.env.FOLDER_NAME
 		);
-		console.log(thumbnailImage);
+		// console.log(thumbnailImage);
+
+		// Ensure instructions is an array of strings
+		if (typeof instructions === 'string') {
+			try {
+				instructions = JSON.parse(instructions);
+			} catch (err) {
+				return res.status(400).json({
+					success: false,
+					message: "Invalid format for instructions. It should be an array of strings.",
+				});
+			}
+		}
+
 		// Create a new course with the given details
 		const newCourse = await Course.create({
 			courseName,
