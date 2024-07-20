@@ -20,6 +20,7 @@ export default function UpdatePassword() {
   } = useForm()
 
   const submitPasswordForm = async (data, e) => {
+    // alert("I am here");
     console.log("password Data - ", data)
     try {
       await changePassword(token, data);

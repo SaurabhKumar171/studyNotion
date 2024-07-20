@@ -46,32 +46,45 @@ const InstructorChart = ({courses}) => {
 
 
     //create options
-    const options = {
-
-    };
+  // Options for the chart
+  const options = {
+    maintainAspectRatio: false,
+  }
 
 
   return (
-    <div>
-      <p>Visualise</p>
-      <div className='flex gap-x-5'>
-        <button
-        onClick={() => setCurrChart("students")}
-        >
-            Student
-        </button>
-
-        <button
-        onClick={() => setCurrChart("income")}
-        >
-            Income
-        </button>
+    <div className="flex flex-1 flex-col gap-y-4 rounded-md bg-richblack-800 p-6">
+      <p className="text-lg font-bold text-richblack-5">Visualize</p>
+      <div className="space-x-4 font-semibold">
+            {/* Button to switch to the "students" chart */}
+            <button
+                onClick={() => setCurrChart("students")}
+                className={`rounded-sm p-1 px-3 transition-all duration-200 ${
+                    currChart === "students"
+                    ? "bg-richblack-700 text-yellow-50"
+                    : "text-yellow-400"
+                }`}
+            >
+                Students
+            </button>
+            {/* Button to switch to the "income" chart */}
+            <button
+                onClick={() => setCurrChart("income")}
+                className={`rounded-sm p-1 px-3 transition-all duration-200 ${
+                    currChart === "income"
+                    ? "bg-richblack-700 text-yellow-50"
+                    : "text-yellow-400"
+                }`}
+            >
+                Income
+            </button>
       </div>
-      <div>
-        <Pie 
-            data={currChart === "students" ? chartDataForStudents : chartDataForIncome}
-            options={options}
-        />
+      <div className="mx-auto aspect-square h-full w-full">
+            {/* Render the Pie chart based on the selected chart */}
+            <Pie
+                data={currChart === "students" ? chartDataForStudents : chartDataForIncome}
+                options={options}
+            />
       </div>
     </div>
   )

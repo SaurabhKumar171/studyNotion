@@ -72,11 +72,11 @@ export function updateProfile(token, formData) {
 }
   
 export async function changePassword(token, data){
-  console.log("ff",data);    
+    // console.log("data",data);    
     const toastId = toast.loading("Loading...")
 
     try {
-      const response = await apiConnector('POST', 
+      const response = await apiConnector("POST", 
                                           CHANGE_PASSWORD_API, 
                                           {...data , confirmNewPassword:data.newPassword}, 
                                           {Authorization : `Bearer ${token}`}

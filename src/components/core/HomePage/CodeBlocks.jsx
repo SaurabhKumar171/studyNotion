@@ -36,7 +36,7 @@ const CodeBlocks = ({
     </div>
 
      {/*Section 2*/}
-     <div className=' h-fit  flex flex-row text-10[px] w-[100%] py-4 lg:w-[500px] border-[0.2px] border-solid border-richblack-700 text-[8px] typeAnimate:text-base min-[380px]:text-[12px]' 
+     <div className=' h-fit  flex flex-row w-[100%] py-4 lg:w-[500px] border-[0.2px] border-solid border-richblack-700 typeAnimate:text-base min-[380px]:text-[12px] min-[510px]:text-[14px] text-10[px] text-[8px]' 
           style={{background:'linear-gradient(rgb(9 18 33) 24%, rgb(10 19 33) 38%, transparent)'}}>
 
         <Blob customClasses={`${gradient}`}/>

@@ -16,8 +16,8 @@ const AddCourse = () => {
 
 
   return (
-    <div className='flex gap-x-7 items-baseline text-white ml-10 w-[90%]'>
-         <div className='w-[86%]'>
+    <div className='flex md:flex-row flex-col-reverse gap-x-7 items-baseline text-white ml-10 w-full md:w-[90%]'>
+         <div className='w-[86%] md:mt-0 mt-8'>
             <h1>Add Course</h1>
             <div>
                 <RenderSteps/>

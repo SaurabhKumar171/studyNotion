@@ -18,6 +18,7 @@ const RenderTotalAmount = () => {
         const courses = cart.map((course)=> course._id);
         buyCourse(token, courses, user, navigate, dispatch);
         resetCartCourses(token);
+        
     }
 
     useEffect(()=>{
@@ -29,12 +30,15 @@ const RenderTotalAmount = () => {
     },[cart])
 
   return (
-    <div className='bg-richblack-700 p-4 rounded-md w-[22%]'>
+    <div className='bg-richblack-700 p-4 rounded-md w-[200px] xs:w-[250px] md:w-[300px] ml-4'>
         <p className='text-richblack-200'>Total:</p>
         {/* <p className='font-inter font-semibold text-2xl text-yellow-50'>Rs. {total}</p> */}
         <p className='font-inter font-semibold text-2xl text-yellow-50'>{`Rs. ${totalAmount}`}</p>
 
-        <p className='text-richblack-200 line-through'>Rs. 3500</p>
+        {
+          totalAmount > 0 && 
+          <p className='text-richblack-200 line-through'>{`Rs. ${totalAmount + 500}`}</p>
+        }
 
         <IconBtn
             text="Buy Now"
