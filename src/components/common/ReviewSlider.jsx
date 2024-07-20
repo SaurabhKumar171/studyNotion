@@ -36,7 +36,7 @@ function ReviewSlider() {
 
   return (
     <div className="text-white">
-      <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
+      <div className="my-[50px] h-[90%] mx-auto max-w-maxContentTab lg:max-w-maxContent">
 
                 <Swiper
                     slidesPerView={1}
@@ -51,7 +51,8 @@ function ReviewSlider() {
                     }}
                     navigation={true}
                     breakpoints={{
-                        1024:{slidesPerView:3,}
+                        1024:{slidesPerView:3,},
+                        640:{slidesPerView:2,},
                     }}
                 >
                     {
