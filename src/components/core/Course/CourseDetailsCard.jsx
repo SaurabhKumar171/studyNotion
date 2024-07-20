@@ -16,6 +16,7 @@ const CourseDetailsCard = ({course, setConfirmationModal, handleBuyCourse}) => {
         price : CurrentPrice
     } = course;
 
+
     const {user} = useSelector((state)=>state.profile);
     const {token} = useSelector((state)=>state.auth);
     const navigate = useNavigate();
@@ -64,7 +65,7 @@ const CourseDetailsCard = ({course, setConfirmationModal, handleBuyCourse}) => {
           <div className="space-x-3 pb-4 text-3xl font-semibold">
             Rs. {CurrentPrice}
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 text-richblack-5">
             <button
               className="yellowButton"
               onClick={

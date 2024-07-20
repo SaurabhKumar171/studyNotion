@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { removeFromCart, resetCart } from '../../../../slices/cartSlice';
 import { removeCourseFromCart } from '../../../../services/operations/courseDetailsAPI';
 
-const RenderCartCourses = ({totalItems}) => {
+const RenderCartCourses = ({setTotalItems}) => {
 
     const {cart} = useSelector((state)=> state.cart)
     const {token} = useSelector(state=> state.auth) 

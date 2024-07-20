@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { changePassword } from "../../../../services/operations/settingsAPI"
 import IconBtn from "../../../common/IconBtn"
@@ -9,6 +9,7 @@ import IconBtn from "../../../common/IconBtn"
 export default function UpdatePassword() {
   const { token } = useSelector((state) => state.auth)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [showOldPassword, setShowOldPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
@@ -19,22 +20,19 @@ export default function UpdatePassword() {
     formState: { errors },
   } = useForm()
 
-  const submitPasswordForm = async (data, e) => {
-    // alert("I am here");
-    console.log("password Data - ", data)
+  const submitPasswordForm = async (data) => {
+    // console.log("Password Data - ", data)
     try {
-      await changePassword(token, data);
-      e.target.reset();
+      dispatch(changePassword(token, data));
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
     }
-    
   }
 
 
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(submitPasswordForm(e))}>
+      <form onSubmit={handleSubmit(submitPasswordForm)}>
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 py-8 px-4 sm:px-12">
           <h2 className="text-lg font-semibold text-richblack-5 max-[290px]:text-center">Password</h2>
           <div className="flex flex-col items-baseline gap-5 lg:flex-row">

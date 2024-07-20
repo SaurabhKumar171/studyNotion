@@ -25,7 +25,7 @@ const CourseTable = ({courses, setCourses}) => {
       setLoading(true);
 
       await deleteCourse({courseId: courseId}, token);
-      const result = await fetchInstructorCourses();
+      const result = await fetchInstructorCourses(token);
 
       if(result){
         setCourses(result);

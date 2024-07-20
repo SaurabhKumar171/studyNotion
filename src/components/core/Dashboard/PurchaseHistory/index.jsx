@@ -62,33 +62,36 @@ const PurchaseHistory = () => {
               </Td>
             </Tr>
           ) : (
-            purchaseHistory?.map((course) => (
-              <Tr
-                key={course?.courseDetails._id}
-                className="flex justify-between border-b border-richblack-800 px-6 py-8"
-              >
-                <Td className="text-sm font-medium text-richblack-100">
-                    <div>
-                        <img src={course?.courseDetails?.thumbnail} alt={`course-${course?.courseDetails?.thumbnail}`} width={50} height={50} className="rounded"/>
-                        <p>{course?.courseDetails?.courseName}</p>
-                    </div>
-                </Td>
-                <Td className="text-sm font-medium text-richblack-100">
-                  {
-                    new Date(course?.purchaseDate).toLocaleString("en-GB", {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true
-                    })
-                  }
-                </Td>
-                <Td className="text-sm font-medium text-richblack-100 ">
-                    ₹{course?.price}
-                </Td>
-              </Tr>
+            purchaseHistory?.map((course, index) => (
+              course?.courseDetails ?
+              (
+                <Tr
+                  key={index}
+                  className="flex justify-between border-b border-richblack-800 px-6 py-8"
+                >
+                  <Td className="text-sm font-medium text-richblack-100">
+                      <div>
+                          <img src={course?.courseDetails?.thumbnail} alt={`course-${course?.courseDetails?.thumbnail}`} width={50} height={50} className="rounded"/>
+                          <p>{course?.courseDetails?.courseName}</p>
+                      </div>
+                  </Td>
+                  <Td className="text-sm font-medium text-richblack-100">
+                    {
+                      new Date(course?.purchaseDate).toLocaleString("en-GB", {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          hour12: true
+                      })
+                    }
+                  </Td>
+                  <Td className="text-sm font-medium text-richblack-100 ">
+                      ₹{course?.price}
+                  </Td>
+                </Tr>
+              ) : null
             ))
           )}
         </Tbody>
