@@ -6,6 +6,7 @@ import { getInstructorData } from '../../../../services/operations/profileApi';
 import { fetchInstructorCourses } from '../../../../services/operations/courseDetailsAPI';
 import { Link } from 'react-router-dom';
 import InstructorChart from './InstructorChart';
+import Spinner from '../../../common/Spinner';
 
 const Instructor = () => {
 
@@ -50,7 +51,7 @@ const Instructor = () => {
             </p>
         </div>
         {loading ? (
-            <div className="spinner"></div>
+            <Spinner/>
         ) : courses.length > 0 ? (
             <div>
                 <div className="my-4 flex h-[450px] space-x-4 overflow-x-auto">

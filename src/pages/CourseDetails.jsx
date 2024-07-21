@@ -14,6 +14,11 @@ import Footer from '../components/common/Footer';
 import { BiInfoCircle } from "react-icons/bi"
 import { HiOutlineGlobeAlt } from "react-icons/hi"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
+import { addToCart } from '../slices/cartSlice';
+import { ACCOUNT_TYPE } from '../utils/constants';
+import toast from 'react-hot-toast';
+import { addCourseToCart } from '../services/operations/courseDetailsAPI';
+import Spinner from '../components/common/Spinner';
 
 const CourseDetails = () => {
 
@@ -81,10 +86,32 @@ const CourseDetails = () => {
         })
     }
 
+    const handleAddToCart = () => {
+      if(user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR){
+          toast.error("You cannot buy your own courses");
+          return;
+      }
+
+      if(token){
+          // dispatch(addToCart(courseData?.data[0]));
+          addCourseToCart(courseData?.data[0]?._id, token);
+          return;
+      }
+      
+      setConfirmationModal({
+          text1:"you are not logged in",
+          text2:"Please login to add to cart",
+          btn1text:"login",
+          btn2Text:"cancel",
+          btn1Handler:()=>navigate("/login"),
+          btn2Handler: ()=> setConfirmationModal(null),
+      })
+  }
+
     if(loading || !courseData){
         return (
                 <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-                    <div className="spinner"></div>
+                    <Spinner/>
                 </div>
             );
     }
@@ -113,7 +140,7 @@ const CourseDetails = () => {
         // console.log("payment loading")
         return (
           <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-            <div className="spinner"></div>
+            <Spinner/>
           </div>
         )
     }
@@ -124,7 +151,7 @@ const CourseDetails = () => {
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
-            <div className="relative block max-h-[30rem] lg:hidden">
+            <div className="relative block max-h-[30rem] lg:hidden overflow-hidden">
               <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
               <img
                 src={thumbnail}
@@ -167,14 +194,14 @@ const CourseDetails = () => {
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
                 Rs. {price}
               </p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
+              <button className="yellowButton text-richblack-5" onClick={handleBuyCourse}>
                 Buy Now
               </button>
-              <button className="blackButton">Add to Cart</button>
+              <button className="blackButton text-richblack-5" onClick={handleAddToCart}>Add to Cart</button>
             </div>
           </div>
           {/* Courses Card */}
-          <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
+          <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute lg:block">
             <CourseDetailsCard
               course={courseData?.data[0]}
               setConfirmationModal={setConfirmationModal}

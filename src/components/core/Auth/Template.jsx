@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import frameImg from "../../../assets/Images/frame.png"
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
+import Spinner from "../../common/Spinner"
 
 function Template({ title, description1, description2, image, formType }) {
   const { loading } = useSelector((state) => state.auth)
@@ -11,7 +12,7 @@ function Template({ title, description1, description2, image, formType }) {
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
       {loading ? (
-        <div className="spinner"></div>
+        <Spinner/>
       ) : (
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col-reverse justify-between gap-y-12 py-12 md:flex-row md:gap-y-0 md:gap-x-12">
           <div className="mx-auto w-11/12 max-w-[450px] md:mx-0">

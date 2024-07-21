@@ -11,6 +11,7 @@ import { apiConnector } from "../services/apiconnector"
 import { categories } from "../services/apis"
 import { getCatalogPageData } from "../services/operations/pageAndComponentData"
 import Error from "./Error"
+import Spinner from "../components/common/Spinner"
 
 function Catalog() {
   const { loading } = useSelector((state) => state.profile)
@@ -48,7 +49,7 @@ function Catalog() {
   if (loading || !catalogPageData) {
     return (
       <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-        <div className="spinner"></div>
+        <Spinner/>
       </div>
     )
   }
