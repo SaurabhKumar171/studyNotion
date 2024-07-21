@@ -6,6 +6,7 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { sendOtp, signUp } from "../services/operations/authAPI";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/common/Spinner";
 
 function VerifyEmail() {
   const [otp, setOtp] = useState("");
@@ -50,7 +51,7 @@ function VerifyEmail() {
     <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center">
       {loading ? (
         <div>
-          <div className="spinner"></div>
+          <Spinner/>
         </div>
       ) : (
         <div className="max-w-[500px] p-4 lg:p-8">
